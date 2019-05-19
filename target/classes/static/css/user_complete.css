@@ -1,0 +1,48 @@
+<style type="text/css">
+    body{
+        margin: 0px;
+        padding: 0px;
+        background-image: url(img/bg.jpg);
+    }
+	.block1{
+        width: 100%; 
+        position: relative;
+	}
+	.block2{
+        width: 500px;
+        height: 100px;
+        margin: 0 auto;
+        padding-top: 100px;
+	}
+    .block2 img{
+        padding-top:50px;
+        float: left; 
+    }
+
+    .block3{
+         width: 250px; 
+         /*margin-top: 10px; */
+         margin-left: 50px;
+         float: left; 
+    }
+
+    #login{
+        height: 40px;
+        margin-top: 20px;
+        background-color: #000;
+        color: #fff;
+    }
+
+    label{
+        color: #fff;
+    }
+    input{
+        width: 200px;
+        height: 30px;
+        padding: 2px;
+        background-color: #f2f2f2;
+        border: 1px solid #000;
+        border-radius: 5px;
+        outline: none;
+    }
+</style>
