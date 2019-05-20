@@ -28,7 +28,7 @@ public class CommentController {
 		@RequestMapping("/commentView")
 		@Transactional("resTransactionManager")
 		public ModelAndView index(@RequestParam Map<String, Object> param) {
-			System.out.println("1233211234567");
+			System.out.println("123321123456231");
 			UserInfo a = new UserInfo();
 			a.setUserName("毛豪");
 			a.setUserPassword("1233211");
