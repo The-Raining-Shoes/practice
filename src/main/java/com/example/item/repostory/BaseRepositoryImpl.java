@@ -1,14 +1,22 @@
 package com.example.item.repostory;
 
 import java.io.Serializable;
+import java.lang.reflect.Field;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 import javax.persistence.EntityManager;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Path;
+import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.Root;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.data.jpa.repository.support.JpaEntityInformation;
 import org.springframework.data.jpa.repository.support.SimpleJpaRepository;
 
@@ -45,29 +53,7 @@ public class BaseRepositoryImpl<T, ID extends Serializable> extends SimpleJpaRep
 	    return null;
 	}
 
-
-	@Override
-	public List<T> findByEntity(T e) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-
-	@Override
-	public List<T> findByEntity(T e, Sort sort) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-
-	@Override
-	public Page<T> findByEntity(T e, Pageable pageable) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	
-	/*	public List<T> findByEntity(T e) {
+		public List<T> findByEntity(T e) {
 		return super.findAll(getPredicate(e));
 	}
 
@@ -99,61 +85,13 @@ public class BaseRepositoryImpl<T, ID extends Serializable> extends SimpleJpaRep
 					try {
 						value = f.get(e);
 					} catch (Exception e1) {
-						log.debug("获取属性{}值失败！", name);
 					}
 					if (value != null && !"".equals(value)) {
 						Path<?> path = root.get(name);
 						if (path == null) {
 							continue;
 						}
-						if (f.isAnnotationPresent(Like.class)) {
-							// 处理模糊查询
-							StringBuffer pattern = new StringBuffer();
-							Like likeAnnotation = f.getAnnotation(Like.class);
-							if (likeAnnotation.usePrefix()) {
-								pattern.append("%");
-							}
-							pattern.append(value);
-							if (likeAnnotation.useSuffix()) {
-								pattern.append("%");
-							}
-							ls.add(criteriaBuilder.like(path.as(String.class), pattern.toString()));
-						} else if (f.isAnnotationPresent(GreaterThan.class)) {
-							GreaterThan gtAnnotation = f.getAnnotation(GreaterThan.class);
-							if (gtAnnotation.equal()) {
-								// 处理大于等于
-								if (Number.class.isAssignableFrom(path.getJavaType()) && value instanceof Number) {
-									criteriaBuilder.ge(path.as(Number.class), (Number) value);
-								} else if (Date.class.isAssignableFrom(path.getJavaType()) && value instanceof Date) {
-									criteriaBuilder.greaterThanOrEqualTo(path.as(Date.class), (Date) value);
-								}
-							} else {
-								// 处理大于
-								if (Number.class.isAssignableFrom(path.getJavaType()) && value instanceof Number) {
-									criteriaBuilder.gt(path.as(Number.class), (Number) value);
-								} else if (Date.class.isAssignableFrom(path.getJavaType()) && value instanceof Date) {
-									criteriaBuilder.greaterThan(path.as(Date.class), (Date) value);
-								}
-							}
-
-						} else if (f.isAnnotationPresent(LessThan.class)) {
-							LessThan gtAnnotation = f.getAnnotation(LessThan.class);
-							if (gtAnnotation.equal()) {
-								// 处理小于等于
-								if (Number.class.isAssignableFrom(path.getJavaType()) && value instanceof Number) {
-									criteriaBuilder.le(path.as(Number.class), (Number) value);
-								} else if (Date.class.isAssignableFrom(path.getJavaType()) && value instanceof Date) {
-									criteriaBuilder.lessThanOrEqualTo(path.as(Date.class), (Date) value);
-								}
-							} else {
-								// 处理小于
-								if (Number.class.isAssignableFrom(path.getJavaType()) && value instanceof Number) {
-									criteriaBuilder.lt(path.as(Number.class), (Number) value);
-								} else if (Date.class.isAssignableFrom(path.getJavaType()) && value instanceof Date) {
-									criteriaBuilder.lessThan(path.as(Date.class), (Date) value);
-								}
-							}
-						} else {
+						 else {
 							ls.add(criteriaBuilder.equal(path, value));
 						}
 					}
@@ -162,6 +100,6 @@ public class BaseRepositoryImpl<T, ID extends Serializable> extends SimpleJpaRep
 			}
 
 		};
-	}*/
+	}
 
 }

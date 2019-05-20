@@ -25,7 +25,6 @@ public class UserController {
 	//注册页面
 	@RequestMapping("/registIndex")
 	public ModelAndView registIndex() {
-		System.out.println("123");
 		return new ModelAndView("/user/user_regist");
 	}
 
@@ -41,12 +40,10 @@ public class UserController {
 	}
 	
 	//用户登陆方法
-		@SuppressWarnings("deprecation")
 		@RequestMapping("/loginMethod")
 		public ModelAndView loginMethod(@RequestParam Map<String,String> param,HttpSession session){
 			Map<String,String> result = new HashMap<>();
 			if(userService.userLogin(param)) {
-				session.putValue("username", param.get("username"));
 				result.put("username", param.get("username"));
 				return new ModelAndView("/home/home_index",result);
 			}
