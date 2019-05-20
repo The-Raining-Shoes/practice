@@ -25,6 +25,7 @@ public class UserController {
 	//注册页面
 	@RequestMapping("/registIndex")
 	public ModelAndView registIndex() {
+		System.out.println("123");
 		return new ModelAndView("/user/user_regist");
 	}
 
