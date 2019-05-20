@@ -6,9 +6,9 @@ import com.example.item.entity.entityInfo.UserInfo;
 import com.example.item.repostory.BaseRepository;
 
 /**
- * @author HXM
+ * @author MaoHao
  *
  */
-public interface UserInfoReportRepository extends BaseRepository<UserInfo, BigInteger>{
+public interface UserInfoRepository extends BaseRepository<UserInfo, BigInteger>{
 
 }
