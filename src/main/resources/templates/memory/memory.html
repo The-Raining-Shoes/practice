@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>我的榴莲</title>
+  <link rel="stylesheet" href="/css/memory.css">
+</head>
+<body>
+  <header>
+    <a href="/memory.html"><img src="./assets/logo.png" class="logo" alt="榴莲"></a>
+    <nav class="navbar">
+      <a href="/they.html">他们的榴莲</a>
+      <a href="/memory.html" id="curr">我的榴莲</a>
+      <a href="/index.html">榴莲主页</a>
+    </nav>
+  </header>
+  <main>
+    <p class="memory-bar">种下你的榴莲</p>
+    <section>
+      <form>
+        <label for="name">物品名字：</label>
+        <input type="text" name="name"><br>
+        <label for="phote">上传照片：</label>
+        <input type="file" accept=".jpg, .jpeg, .png" name="photo">（请选择照片.jpg）<br>
+        <label for="private">是否公开：</label>
+        <select name="private">
+          <option value="公开">公开</option>
+          <option value="隐藏">隐藏</option>
+        </select><br>
+        <label for="type">类别：</label>
+        <select name="type">br
+          <option value="生活品">生活品</option>
+          <option value="衣物">衣物</option>
+          <option value="电子产品">电子产品</option>
+          <option value="书籍">书籍</option>
+        </select><br>
+        <label for="time">存放时间：</label>
+        <input type="number" name="time">&nbsp;天<br>
+        <label for="description">榴莲故事：</label>
+        <textarea name="description" cols="50" rows="5"></textarea><br>
+        <div class="btn">
+          <input type="submit" value="上传">
+          <input type="reset" value="取消">
+        </div>
+      </form>
+    </section>
+  </main>
+</body>
+<script>
+  const submit = document.querySelector("input[type='submit']");
+  submit.addEventListener('click', (e) => {
+    e.preventDefault();
+    setTimeout(() => {
+      alert("上传成功");
+      location.reload();
+    }, 1000);
+  });
+</script>
+</html>

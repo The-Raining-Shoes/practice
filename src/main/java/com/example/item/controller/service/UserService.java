@@ -15,7 +15,10 @@ import org.springframework.web.multipart.MultipartFile;
 
 @Service
 public class UserService {
-	@Autowired JdbcTemplate jdbc;
+	
+	@Autowired 
+	JdbcTemplate jdbc;
+	
 	//实现图片和表单信息一起上传功能
 	public Map<String, String> userComplete(@RequestParam("file") MultipartFile file,Map<String,String> param){
 		Map<String,String> result = new HashMap<>();
@@ -45,8 +48,8 @@ public class UserService {
 	//用户注册方法
 	public boolean userRegist(Map<String,String> param) {
 		boolean iftrue = false;
-		String sql = "insert into user_info (user_name,user_password,user_phone,user_type)values('"+param.get("username")+"','"+param.get("pwd1")+"',"
-				+ "'"+param.get("phone")+"','"+param.get("sex")+"')";
+		String sql = "insert into user_info (USER_NAME,USER_PASSWORD,USER_TEL,USER_SEX,USER_AGE)values('"+param.get("username")+"','"+param.get("pwd1")+"',"
+				+ "'"+param.get("phone")+"','"+param.get("sex")+"','"+param.get("age")+"')";
 		int a = jdbc.update(sql);
 		if(1==a) {
 			iftrue = true;

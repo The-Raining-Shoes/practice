@@ -30,7 +30,7 @@ public class UserController {
 
 	//用户注册方法
 	@RequestMapping("/registMethod")
-	public ModelAndView registMethod(@RequestParam Map<String,String> param,HttpSession session){
+	public ModelAndView registMethod(@RequestParam Map<String,String> param){
 		Map<String,String> result = new HashMap<>();
 		if(userService.userRegist(param)) {
 			result.put("username", param.get("username"));

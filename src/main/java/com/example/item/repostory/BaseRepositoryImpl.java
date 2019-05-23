@@ -53,7 +53,7 @@ public class BaseRepositoryImpl<T, ID extends Serializable> extends SimpleJpaRep
 	    return null;
 	}
 
-		public List<T> findByEntity(T e) {
+	public List<T> findByEntity(T e) {
 		return super.findAll(getPredicate(e));
 	}
 
