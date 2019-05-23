@@ -27,6 +27,12 @@ public class UserController {
 	public ModelAndView registIndex() {
 		return new ModelAndView("/user/user_regist");
 	}
+	
+	//登录页面
+	@RequestMapping("/loginIndex")
+	public ModelAndView loginIndex() {
+		return new ModelAndView("/user/user_login");
+	}
 
 	//用户注册方法
 	@RequestMapping("/registMethod")
@@ -34,21 +40,21 @@ public class UserController {
 		Map<String,String> result = new HashMap<>();
 		if(userService.userRegist(param)) {
 			result.put("username", param.get("username"));
-			return new ModelAndView("/home/home_index",result);
+			return new ModelAndView("/home/index",result);
 		}
 		return new ModelAndView("/user/user_regist",result);
 	}
 	
 	//用户登陆方法
-		@RequestMapping("/loginMethod")
-		public ModelAndView loginMethod(@RequestParam Map<String,String> param,HttpSession session){
-			Map<String,String> result = new HashMap<>();
-			if(userService.userLogin(param)) {
-				result.put("username", param.get("username"));
-				return new ModelAndView("/home/home_index",result);
-			}
-			return new ModelAndView("/user/user_regist",result);
+	@RequestMapping("/loginMethod")
+	public ModelAndView loginMethod(@RequestParam Map<String,String> param,HttpSession session){
+		Map<String,String> result = new HashMap<>();
+		if(userService.userLogin(param)) {
+			result.put("username", param.get("username"));
+			return new ModelAndView("/home/home_index",result);
 		}
+		return new ModelAndView("/user/user_login",result);
+	}
 	
 	//ajax验证用户是否存在
 	@RequestMapping("/ajaxNameCheck")
