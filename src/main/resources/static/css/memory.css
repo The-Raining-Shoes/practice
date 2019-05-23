@@ -1,7 +1,7 @@
 html, body {
   height: 100%;
   margin: 0;
-  background-image: url(../assets/memory-BG.jpg);
+  background-image:  url(/img/memory-BG.jpg);
   background-repeat: no-repeat;
   background-size: cover;
 }
