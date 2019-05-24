@@ -1,34 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>我的榴莲</title>
-  <link rel="stylesheet" href="/css/they.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>我的榴莲</title>
+<link rel="stylesheet" href="/css/they.css">
 </head>
 <body>
-  <header>
-    <a href="/memory.html"><img src="/img/logo.png" class="logo" alt="榴莲"></a>
-    <nav class="navbar">
-      <a href="/page/they" id="curr">他们的榴莲</a>
-      <a href="/page/memory">我的榴莲</a>
-      <a href="/page/index">榴莲主页</a>
-    </nav>
-  </header>
-  <main>
-    <p class="memory-bar">他们的“榴莲”</p>
-    <section>
-      <div class="col">
-        <img src="/img/TB2x_stXE.iyKJjSspdXXbB_pXa_!!581149330-0-beehive-scenes.jpg_460x460xz.jpg" alt="">
-      </div>
-      <div class="col">
-        <img src="/img/TB2x_stXE.iyKJjSspdXXbB_pXa_!!581149330-0-beehive-scenes.jpg_460x460xz.jpg" alt="">
-      </div>
-      <div class="col">
-        <img src="/img/TB2x_stXE.iyKJjSspdXXbB_pXa_!!581149330-0-beehive-scenes.jpg_460x460xz.jpg" alt="">
-      </div>
-    </section>
-  </main>
+	<header>
+		<a href="/memory.html"><img src="/img/logo.png" class="logo"
+			alt="榴莲"></a>
+		<nav class="navbar">
+			<a href="/page/they" id="curr">他们的榴莲</a> <a href="/page/memory">我的榴莲</a>
+			<a href="/page/index">榴莲主页</a>
+		</nav>
+	</header>
+	<main>
+	<p class="memory-bar">他们的"榴莲"</p>
+	<section>
+		<div class="imgBox"></div>
+	</section>
+	</main>
+	<script src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
+	<script type="text/javascript">
+		$(function() {
+			$
+					.ajax({
+						url : "/page/queryImg",
+						type : "post",
+						async : false,
+						success : function(result) {
+							console.log(result.result);
+							for (var i = 0; i < result.result.length; i++) {
+								$(".imgBox")
+										.append(
+												"<div class='col'><a href='/page/detail?goodsId="
+														+ result.result[i].goodsId
+														+ "&goodsName="
+														+ result.result[i].goodsName
+														+ "&goodsStory="
+														+ result.result[i].goodsStory
+														+ "&goodsSrc="
+														+ result.result[i].goodsSrc
+														+ "'><img src="+ result.result[i].goodsSrc + "></a></div>");
+							}
+						}
+					});
+		})
+	</script>
+
 </body>
 </html>

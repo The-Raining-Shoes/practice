@@ -21,25 +21,14 @@ public class UserController {
 	
 	@Autowired
 	UserService userService;
-	
-	//注册页面
-	@RequestMapping("/registIndex")
-	public ModelAndView registIndex() {
-		return new ModelAndView("/user/user_regist");
-	}
-	
-	//登录页面
-	@RequestMapping("/loginIndex")
-	public ModelAndView loginIndex() {
-		return new ModelAndView("/user/user_login");
-	}
 
 	//用户注册方法
 	@RequestMapping("/registMethod")
 	public ModelAndView registMethod(@RequestParam Map<String,String> param){
 		Map<String,String> result = new HashMap<>();
+		result.put("code", "0");
 		if(userService.userRegist(param)) {
-			result.put("username", param.get("username"));
+			result.put("code", "1");
 			return new ModelAndView("/home/index",result);
 		}
 		return new ModelAndView("/user/user_regist",result);

@@ -7,9 +7,65 @@
   <title>注册榴莲</title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <link rel="stylesheet" href="/css/user.css">
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+</head>
+<body>
+  <header>
+    <a href="/index.html"><img src="/img/logo.png" class="logo" alt="榴莲"></a>
+    <nav class="navbar">
+      <a href="/page/login">登录榴莲</a>
+      <a href="/page/register" id="curr">注册榴莲</a>
+      <a href="/page/memory">我的榴莲</a>
+      <a href="">榴莲故事</a>
+      <a href="">榴莲</a>
+    </nav>
+  </header>
+  <div class="user-box">
+    <h2>注册</h2>
+    <form action="/user/registMethod" method="post" id="registerForm">
+    <input type="text" class="form-control" name="userName" id="userName" placeholder="用户名"><br>
+    <input type="password" name="passWord" class="form-control" id="passWord" placeholder="密码"><br>
+    <input type="password" class="form-control" id="rePassWord" placeholder="确认密码"><br>
+    <input type="number" name="age" class="form-control" id="age" placeholder="年龄"><br>
+    <input type="text" name="tel" class="form-control" id="tel" placeholder="电话号码"><br>
+    <select name="sex" class="form-control" id="sex">
+      <option value="1">男</option>
+      <option value="2">女</option>
+    </select><br>
+    <input type="submit" id="" class="btn btn-primary user-submit" value ="注册"/>
+    </form>
+  </div>
+  
+  
+  <script src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
   <script type="text/javascript">
-  	$("#userName").blur(function(){
+  $(function(){
+	  $("#submitButton").click(function(){
+		  $.ajax({
+	          url:"/user/registMethod",
+	          type:"post",
+	          dataType: "json",
+	          data:{
+	          	"userName":$("#userName").val(),
+	          	"userPassword":$("#passWord").val(),
+	          	"phone":$("#tel").val(),
+	          	"age":$("#age").val(),
+	          	"sex":$("#sex").val()
+	          	},
+	          async:false,
+	          success:function(result){
+	        	  console.log(result)
+	        	  if(result.code==1){
+		        	  alert(result.msg)
+	        	  }else if(result.code==2){
+	        		  alert("注册失败，用户信息重复!")
+	        	  }
+	          }
+	      });
+	  }) 
+  })
+  
+  /* 	$("#userName").blur(function(){
+  		alert(1)
   		var uname= $("#userName").val();
   		$.ajax({
   		   type : "POST", //数据传输的方式
@@ -39,34 +95,7 @@
   	});
   	$("#tel").blur(function(){
     	$("input").css("background-color","#D6D6FF");
-    });
+    }); */
   </script>
-</head>
-<body>
-  <header>
-    <a href="/index.html"><img src="/img/logo.png" class="logo" alt="榴莲"></a>
-    <nav class="navbar">
-      <a href="/page/login">登录榴莲</a>
-      <a href="/page/register" id="curr">注册榴莲</a>
-      <a href="/page/memory">我的榴莲</a>
-      <a href="">榴莲故事</a>
-      <a href="">榴莲</a>
-    </nav>
-  </header>
-  <div class="user-box">
-    <h2>注册</h2>
-    <form action="" id="registerForm">
-    <input type="text" class="form-control" id="userName" placeholder="用户名"><br>
-    <input type="password" class="form-control" id="passWord" placeholder="密码"><br>
-    <input type="password" name="" class="form-control" id="rePassWord" placeholder="确认密码"><br>
-    <input type="number" name="age" class="form-control" id="age" placeholder="年龄"><br>
-    <input type="text" name="tel" class="form-control" id="tel" placeholder="电话号码"><br>
-    <select name="sex" class="form-control" id="sex">
-      <option value="男">男</option>
-      <option value="女">女</option>
-    </select><br>
-    </form>
-    <a href="/login.html"><button type="button" class="btn btn-primary user-submit">注册</button></a>
-  </div>
 </body>
 </html>

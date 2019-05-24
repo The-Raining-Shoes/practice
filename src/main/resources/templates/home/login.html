@@ -55,11 +55,11 @@
   </header>
   <div id="login" class="user-box">
     <h2>登录</h2>
-    <form id="loginFrom">
-    <input type="text" id="userName" class="form-control" placeholder="用户名"><br>
-    <input type="password" id="passWord" class="form-control" placeholder="密码"><br>
+    <form action="/user/loginMethod" method="post" id="">
+    <input type="text" name="userName" id="userName" class="form-control" placeholder="用户名"><br>
+    <input type="password" name="userPassword" id="passWord" class="form-control" placeholder="密码"><br>
+    <input type="submit" id="" class="btn btn-primary user-submit" value ="登陆"/>
     </form>
-    <a href="/memory.html"><button type="button" id="comfrim" class="btn btn-primary user-submit">登录</button></a>
   </div>
 </body>
 </html>

@@ -80,6 +80,7 @@ public class GoodsInfo implements Serializable{
 	 */
   	@Column(name = "GOODS_STORY" )
 	private String goodsStory;
+  	
   	/**
   	 * 图片路径
   	 */

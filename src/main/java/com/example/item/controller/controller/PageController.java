@@ -44,9 +44,17 @@ public class PageController {
 		return new ModelAndView("/home/memory");
 	}
 
-	// 我的榴莲
+	// 榴莲详情
+		@RequestMapping("/detail")
+		public ModelAndView memoryPage(String goodsId,String goodsName,String goodsStory,String goodsSrc) {
+			return new ModelAndView("/home/memory");
+		}
+	
+	// 他们的榴莲
 	@RequestMapping("/they")
 	public ModelAndView theyPage() {
+//		Map<String,List<String>> result = new HashMap<>();
+//		result = pageService.getThierPage();
 		return new ModelAndView("/home/they");
 	}
 
@@ -63,11 +71,11 @@ public class PageController {
 	}
 
 	// 查询所有的榴莲并封装成List返回
-	@RequestMapping("/test3")
+	@RequestMapping("/queryImg")
 	@ResponseBody
 	public Map<String, List<GoodsInfo>> findAllGoods() {
 		List<GoodsInfo> goodsInfoList = pageService.findAllGoodsInfo();
-		Map<String, List<GoodsInfo>> result = new HashMap();
+		Map<String, List<GoodsInfo>> result = new HashMap<>();
 		result.put("result", goodsInfoList);
 		return result;
 	}
