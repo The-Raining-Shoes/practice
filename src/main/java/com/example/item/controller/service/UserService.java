@@ -39,8 +39,8 @@ public class UserService {
 	
 	private boolean saveGoods(Map<String, String> param, String filePath, String fileName) {
 		boolean iftrue = false;
-		String sql = "insert into goods_info (GOODS_TYPE,GOODS_NAME,USER_ID,CREATE_DATE,GOODS_TIME,GOODS_COST,GOODS_IS_SHOW,GOODS_STORY,GOODS_SRC)values('"+param.get("goodsType")+"','"+param.get("goodsName")+"',"
-				+ "'"+param.get("userId")+"',now()+,'"+param.get("goodsTime")+"','"+param.get("goodsCost")+"','"+param.get("goodsIsShow")+"','"+param.get("goodsStory")+"','"+param.get("goodsSrc")+"'";
+		String sql = "insert into goods_info (GOODS_TYPE,GOODS_NAME,USER_ID,CREATE_DATE,GOODS_TIME,GOODS_COST,GOODS_IS_SHOW,GOODS_STORY)values('"+param.get("goodsType")+"','"+param.get("goodsName")+"',"
+				+ "'"+param.get("userId")+"',now()+,'"+param.get("goodsTime")+"','"+param.get("goodsCost")+"','"+param.get("goodsIsShow")+"','"+param.get("goodsStory")+"'";
 		int a = jdbc.update(sql);
 		if(1==a) {
 			iftrue = true;

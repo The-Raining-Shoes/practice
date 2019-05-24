@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>我的榴莲</title>
+  <link rel="stylesheet" href="/css/my.css">
+  <script type="text/javascript">
+  	window.onload = function() {
+  		 $.ajax({
+  		      type : "POST", //数据传输的方式
+  		      url : "/page/searchAllGoods", //进行判断的地址值
+  		      success : function(data) {
+  			  var goodsList = date.get("result")
+  			  var insertText = "";
+  		      if(goodsList.size() > 0) {
+  			  	for (var i = 0; i < goodsList.size(); i++) {
+  			  		insertText += "
+  			  		<div class="col">
+  			        <img src="/img/"+goodsList.GOODS_NAME+" alt="">
+  			      	</div>
+  			      	";
+  			  	}
+  			  	
+				document.getElementById("pic").innerHTML = insertText;0
+  		      }
+  		 	  }
+  		 });
+  	}
+  </script>
+</head>
+<body>
+  <h1>我 的 榴 莲</h1>
+  <div style="">
+  	<ul>
+  		<li>种下榴莲</li>
+  		<li>他们的榴莲</li>
+  		<li>榴莲主页</li>
+  	</ul>
+  </div>
+  <div id="pic"></div>
+</body>
+</html>

@@ -63,7 +63,7 @@ public class PageController {
 	}
 
 	// 查询所有的榴莲并封装成List返回
-	@RequestMapping("/test3")
+	@RequestMapping("/searchAllGoods")
 	@ResponseBody
 	public Map<String, List<GoodsInfo>> findAllGoods() {
 		List<GoodsInfo> goodsInfoList = pageService.findAllGoodsInfo();
