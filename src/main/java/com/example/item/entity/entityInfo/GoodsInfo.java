@@ -86,4 +86,10 @@ public class GoodsInfo implements Serializable{
   	 */
   	@Column(name = "GOODS_SRC")
   	private String goodsSrc;
+  	
+  	/**
+  	 * 物品价格
+  	 */
+  	@Column(name = "GOODS_PRICE")
+  	private String goodsPrice;
 }

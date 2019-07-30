@@ -43,10 +43,10 @@ public class UserService {
 		Calendar ca = Calendar.getInstance();
 		ca.add(Calendar.DAY_OF_YEAR, Integer.valueOf(param.get("goodsTime")));
 		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
-		String sql = "insert into goods_info (GOODS_TYPE,GOODS_NAME,USER_ID,CREATE_DATE,GOODS_TIME,GOODS_COST,GOODS_IS_SHOW,GOODS_STORY,GOODS_SRC)values('"
+		String sql = "insert into goods_info (GOODS_TYPE,GOODS_NAME,USER_ID,CREATE_DATE,GOODS_TIME,GOODS_COST,GOODS_IS_SHOW,GOODS_STORY,GOODS_SRC,GOODS_PRICE)values('"
 				+ param.get("goodsType") + "','" + param.get("goodsName") + "'," + "'" + 3
 				+ "',now(),'" + format.format(ca.getTime()) + "','" + 100 + "','"
-				+ param.get("goodsIsShow") + "','" + param.get("goodsStory") + "','" + path + "')";
+				+ param.get("goodsIsShow") + "','" + param.get("goodsStory") + "','" + path + "','"+param.get("price")+"')";
 		int a = jdbc.update(sql);
 		if (1 == a) {
 			iftrue = true;
@@ -70,7 +70,7 @@ public class UserService {
 	public boolean userRegist(@RequestParam Map<String, String> param) {
 		boolean iftrue = false;
 		String sql = "insert into user_info (USER_NAME,USER_PASSWORD,USER_TEL,USER_SEX,USER_AGE,CREATE_DATE)values('"
-				+ param.get("userName") + "','" + param.get("userPassword") + "'," + "'" + param.get("phone") + "','"
+				+ param.get("userName") + "','" + param.get("passWord") + "'," + "'" + param.get("tel") + "','"
 				+ param.get("sex") + "','" + param.get("age") + "',now())";
 		int a = jdbc.update(sql);
 		if (1 == a) {

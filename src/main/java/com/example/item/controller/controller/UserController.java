@@ -24,14 +24,17 @@ public class UserController {
 
 	//用户注册方法
 	@RequestMapping("/registMethod")
-	public ModelAndView registMethod(@RequestParam Map<String,String> param){
+	@ResponseBody
+	public Map<String,String> registMethod(@RequestParam Map<String,String> param){
 		Map<String,String> result = new HashMap<>();
 		result.put("code", "0");
+		result.put("msg", "注册失败，用户信息重复！");
 		if(userService.userRegist(param)) {
 			result.put("code", "1");
-			return new ModelAndView("/home/index",result);
+			result.put("msg", "注册成功,请前往登陆界面！");
+			return result;
 		}
-		return new ModelAndView("/user/user_regist",result);
+		return result;
 	}
 	
 	//用户登陆方法
@@ -40,9 +43,9 @@ public class UserController {
 		Map<String,String> result = new HashMap<>();
 		if(userService.userLogin(param)) {
 			result.put("username", param.get("username"));
-			return new ModelAndView("/home/home_index",result);
+			return new ModelAndView("/home/my",result);
 		}
-		return new ModelAndView("/user/user_login",result);
+		return new ModelAndView("/home/login",result);
 	}
 	
 	//ajax验证用户是否存在

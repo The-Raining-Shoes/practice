@@ -26,6 +26,18 @@ public class PageController {
 		return new ModelAndView("/home/index");
 	}
 
+	// 主页面
+		@RequestMapping("/index2")
+		public ModelAndView returnIndex2() {
+			return new ModelAndView("/home/index2");
+		}
+	
+	// 我的页面
+	@RequestMapping("/mypage")
+	public ModelAndView returnMyPage() {
+		return new ModelAndView("/home/my");
+	}
+
 	// 注册页面
 	@RequestMapping("/register")
 	public ModelAndView returnRegist() {
@@ -38,23 +50,29 @@ public class PageController {
 		return new ModelAndView("/home/login");
 	}
 
-	// 我的榴莲
+	// 新增榴莲
 	@RequestMapping("/memory")
 	public ModelAndView memoryPage() {
 		return new ModelAndView("/home/memory");
 	}
 
 	// 榴莲详情
-		@RequestMapping("/detail")
-		public ModelAndView memoryPage(String goodsId,String goodsName,String goodsStory,String goodsSrc) {
-			return new ModelAndView("/home/memory");
-		}
-	
+	@RequestMapping("/detail")
+	@ResponseBody
+	public ModelAndView memoryPage(String goodsId, String goodsName, String goodsStory, String goodsSrc,String goodsPrice) {
+		Map<String, String> result = new HashMap<>();
+		result.put("goodsId", goodsId);
+		result.put("goodsName", goodsName);
+		result.put("goodsStory", goodsStory);
+		result.put("goodsSrc", goodsSrc);
+		return new ModelAndView("/home/story",result);
+	}
+
 	// 他们的榴莲
 	@RequestMapping("/they")
 	public ModelAndView theyPage() {
-//		Map<String,List<String>> result = new HashMap<>();
-//		result = pageService.getThierPage();
+		// Map<String,List<String>> result = new HashMap<>();
+		// result = pageService.getThierPage();
 		return new ModelAndView("/home/they");
 	}
 
