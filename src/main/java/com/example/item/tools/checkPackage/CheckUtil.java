@@ -3,7 +3,6 @@ package com.example.item.tools.checkPackage;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.StringTokenizer;
-import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 
@@ -181,24 +180,6 @@ public class CheckUtil {
             }
         }
 		return String.valueOf(arr);
-	}
-	
-	static void test() {
-		String str = "123";
-		String regEx = "[a-zA-Z]";
-		String regEx1 = "[0-9]";
-		Pattern   p  =   Pattern.compile(regEx1);  
-		Matcher   m   =   p.matcher(str);
-		String sb = "";
-		while(m.find()){
-			sb+=m.group();
-	    }
-		int a = Integer.valueOf(sb);
-		System.out.println(a);
-	}
-	
-	public static void main(String[] args) {
-		test();
 	}
 
 }
