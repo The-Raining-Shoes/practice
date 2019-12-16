@@ -26,6 +26,7 @@ public class Encrypt {
             '3', '4', '5', '6', '7', '8', '9', '+', '?' };
 
     public static void main(String[] args) {
+        System.out.println("1233211234567");
         String a = encrypt("123");
         System.out.println(encrypt("123"));
         System.out.println(decrypt(a));
