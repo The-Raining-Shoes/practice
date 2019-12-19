@@ -9,6 +9,9 @@ import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 public class ItemApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(ItemApplication.class, args);
+		SpringApplication arr = new SpringApplication(ItemApplication.class);
+		arr.setAdditionalProfiles("application");
+		arr.run(args);
+//		SpringApplication.run(ItemApplication.class, args);
 	}
 }
