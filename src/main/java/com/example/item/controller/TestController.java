@@ -38,6 +38,7 @@ public class TestController {
 	@GetMapping(value = "/testJpa")
 	public String testJpa() {
 		List<GoodsInfo> list =  goodsInfoRepository.findAll();
+		System.out.println(list);
 		return "hello";
 	}
 }
