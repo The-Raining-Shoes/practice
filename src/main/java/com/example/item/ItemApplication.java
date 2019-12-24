@@ -1,15 +1,14 @@
 package com.example.item;
 
-import com.example.item.domain.repository.BaseRepositoryFactoryBean;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
-import org.springframework.data.jpa.repository.support.JpaRepositoryFactoryBean;
 
 
-@SpringBootApplication(exclude= {DataSourceAutoConfiguration.class})
+@SpringBootApplication(exclude = {DataSourceAutoConfiguration.class})
 @EnableJpaRepositories()
+//可以用自建JPA源
 //repositoryFactoryBeanClass = JpaRepositoryFactoryBean.class
 public class ItemApplication {
 

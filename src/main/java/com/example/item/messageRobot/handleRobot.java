@@ -14,6 +14,9 @@ import java.io.IOException;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ * 钉钉机器人短信发送(更换机器人token即可)
+ */
 public class handleRobot {
 
     /**
@@ -98,6 +101,7 @@ public class handleRobot {
 
     /**
      * 查错机器人
+     *
      * @param message 封装的消息
      */
     public static void sendErrorReboot(String message) {
@@ -106,11 +110,11 @@ public class handleRobot {
     }
 
     public static void main(String[] args) {
-        String text=setMessage(false,"hr-我就是我,  @1825718XXXX 是不一样的烟火", Collections.singletonList("17782263622"));
+        String text = setMessage(false, "hr-我就是我,  @1825718XXXX 是不一样的烟火", Collections.singletonList("17782263622"));
 //        String text=setMarkDown(true,"杭州天气","#### 杭州天气  \n > 9度，@1825718XXXX 西北风1级，空气良89，相对温度73%\n\n > ![screenshot](http://i01.lw.aliimg.com/media/lALPBbCc1ZhJGIvNAkzNBLA_1200_588.png)\n  > ###### 10点20分发布 [天气](http://www.thinkpage.cn/)",Arrays.asList(""));
         try {
             sendErrorReboot(text);
-        }catch (Exception e){
+        } catch (Exception e) {
             System.out.println("报错");
         }
     }

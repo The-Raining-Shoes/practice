@@ -18,27 +18,30 @@ import java.util.List;
 @RequestMapping(value = "/test")
 public class TestController {
 
-	@Setter(onMethod_ = @Autowired)
-	private TestService testService;
-	@Setter(onMethod_ = @Autowired)
-	private GoodsInfoRepository goodsInfoRepository;
+    @Setter(onMethod_ = @Autowired)
+    private TestService testService;
+    @Setter(onMethod_ = @Autowired)
+    private GoodsInfoRepository goodsInfoRepository;
 
-	@GetMapping(value = "/testAopMethod")
-	public String testAopMethod() {
-		testService.tests();
-		return "hello";
-	}
 
-	@PostMapping(value = "/testControllerAdvice")
-	public String testControllerAdvice(@RequestBody TestDTO testClass) {
-		System.out.println(testClass.getTestCode());
-		return "hello";
-	}
+    @GetMapping(value = "/testAopMethod")
+    public String testAopMethod() {
+        testService.tests();
+        return "hello";
+    }
 
-	@GetMapping(value = "/testJpa")
-	public String testJpa() {
-		List<GoodsInfo> list =  goodsInfoRepository.findAll();
-		System.out.println(list);
-		return "hello";
-	}
+
+    @PostMapping(value = "/testControllerAdvice")
+    public String testControllerAdvice(@RequestBody TestDTO testClass) {
+        System.out.println(testClass.getTestCode());
+        return "hello";
+    }
+
+
+    @GetMapping(value = "/testJpa")
+    public String testJpa() {
+        List<GoodsInfo> list = goodsInfoRepository.findAll();
+        System.out.println(list);
+        return "hello";
+    }
 }
