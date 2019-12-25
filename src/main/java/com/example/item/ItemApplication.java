@@ -13,7 +13,6 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 public class ItemApplication {
 
 	public static void main(String[] args) {
-
 		SpringApplication arr = new SpringApplication(ItemApplication.class);
 		arr.setAdditionalProfiles("application");
 		arr.run(args);
