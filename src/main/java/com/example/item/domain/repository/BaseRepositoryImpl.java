@@ -15,12 +15,14 @@ import java.io.Serializable;
 import java.util.Optional;
 
 /**
- * @author tuzy create 2018年9月17日下午5:32:36
+ * null
+ *
+ * @author Auto Generate 2019-12-20 16:25:17
  */
 @Slf4j
 @NoRepositoryBean
 public class BaseRepositoryImpl<T, ID extends Serializable> extends SimpleJpaRepository<T, ID>
-    implements JpaRepository<T, ID> {
+        implements JpaRepository<T, ID> {
 
     protected final EntityManager entityManager;
 

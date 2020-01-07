@@ -9,6 +9,12 @@ import org.springframework.context.annotation.Configuration;
 
 import javax.sql.DataSource;
 
+/**
+ * @Message 数据库配置
+ * @Author: HXM
+ * @Date: 2020/1/7 9:59
+ */
+
 @Configuration
 public class JdbcConfig {
     @Bean
@@ -17,6 +23,7 @@ public class JdbcConfig {
 //       1.使用连接池 例:druid数据库连接池使用
 //       DruidDataSource dataSource = new DruidDataSource();
 //       dataSource.setUrl("")
+//       dataSource.setXXXXXX
 //       return dataSource
 //       2.使用spring框架数据源装配
 //       return DataSourceBuilder.create().build()
