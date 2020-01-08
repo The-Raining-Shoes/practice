@@ -14,19 +14,19 @@ import java.lang.reflect.Method;
 @Component
 @Aspect
 public class AspectTest {
-	
-	@Pointcut("@annotation(com.example.item.domain.annation.AnnationTest)")
-	public void aopTest() {
-	}
 
-	@Around("aopTest()")
+    @Pointcut("@annotation(com.xample.item.domain.annation.AnnationTest)")
+    public void aopTest() {
+    }
+
+    @Around("aopTest()")
     public void doReportQueryPointAspect(ProceedingJoinPoint pjp) throws Throwable {
-		System.out.println("测试进入了");
-		Signature signature = pjp.getSignature();
+        System.out.println("测试进入了");
+        Signature signature = pjp.getSignature();
         MethodSignature methodSignature = (MethodSignature) signature;
-        Method targetMethod = methodSignature.getMethod(); 
+        Method targetMethod = methodSignature.getMethod();
         AnnationTest annationTest = targetMethod.getAnnotation(AnnationTest.class);
         System.out.println(annationTest.testCode());
         pjp.proceed();
-	}
+    }
 }

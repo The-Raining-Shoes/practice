@@ -37,7 +37,6 @@ public class TestController {
         return "hello";
     }
 
-
     @GetMapping(value = "/testJpa")
     public String testJpa() {
         List<GoodsInfo> list = goodsInfoRepository.findAll();
@@ -46,7 +45,6 @@ public class TestController {
     }
 
     public static void main(String[] args) {
-        String date = "201912";
-        System.out.println(date.substring(0, 4) + "年" + date.substring(4) + "月");
+        System.out.println(2 << 3);
     }
 }

@@ -16,7 +16,6 @@ public class ThreadDemo1 {
         for (int i = 0; i < 100; i++) {
             executor.execute(ThreadDemo1::func);
         }
-
     }
 
     public static void func() {
