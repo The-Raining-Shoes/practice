@@ -16,20 +16,20 @@ public class Encrypt {
     public static final int PREFIX_LENGTH = PREFIX.length();
     private static final String DEFAULT_CIPHER_ALGORITHM = "AES/ECB/PKCS5Padding";// 默认的加密算法
     private static final Charset DEFAULT_CHARSET = StandardCharsets.UTF_8;
-    private static final char[] INT_TO_BASE64 = { 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N',
+    private static final char[] INT_TO_BASE64 = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N',
             'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i',
             'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '0', '1', '2', '3',
-            '4', '5', '6', '7', '8', '9', '+', '/' };
-    private static final char[] INT_TO_ALT_BASE64 = { '!', '"', '#', '$', '%', '&', '\'', '(', ')', ',', '-', '.', ':',
+            '4', '5', '6', '7', '8', '9', '+', '/'};
+    private static final char[] INT_TO_ALT_BASE64 = {'!', '"', '#', '$', '%', '&', '\'', '(', ')', ',', '-', '.', ':',
             ';', '<', '>', '@', '[', ']', '^', '`', '_', '{', '|', '}', '~', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h',
             'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '0', '1', '2',
-            '3', '4', '5', '6', '7', '8', '9', '+', '?' };
+            '3', '4', '5', '6', '7', '8', '9', '+', '?'};
 
     public static void main(String[] args) {
-        System.out.println("1233211234567");
-        String a = encrypt("123");
-        System.out.println(encrypt("123"));
-        System.out.println(decrypt(a));
+//        System.out.println("1233211234567");
+//        String a = encrypt("123");
+//        System.out.println(encrypt("123"));
+        System.out.println(decrypt("{cipher.1}LC6TzmVNx172/Z2/EUGGpvgDmYxJ97OtXJziXbX+51s=", "CHINACCS-D-HR"));
     }
 
     // 加密
@@ -81,7 +81,7 @@ public class Encrypt {
     }
 
     /**
-     * @param content 待解密内容
+     * @param content  待解密内容
      * @param password 加密密码
      * @return 返回数据
      */
