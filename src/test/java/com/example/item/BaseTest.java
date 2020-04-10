@@ -1,19 +1,55 @@
 package com.example.item;
 
+import com.example.item.domain.entity.TOrderDetail;
+import com.example.item.domain.repository.res.TOrderDetailRepository;
+import lombok.Setter;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.junit4.SpringRunner;
 
-import java.math.BigInteger;
+import java.util.concurrent.LinkedBlockingQueue;
+import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
 
-@RunWith(value = SpringJUnit4ClassRunner.class)
-@SpringBootTest(classes = {BaseTest.class})
+@RunWith(value = SpringRunner.class)
+@SpringBootTest
 public class BaseTest {
 
+    @Setter(onMethod_ = @Autowired)
+    private TOrderDetailRepository tOrderDetailRepository;
+
+    // 多线程跑数据demo
     @Test
     public void doJob() {
-        System.out.println(BigInteger.valueOf(0));
+        ThreadPoolExecutor executor = new ThreadPoolExecutor
+                (100, 100, 60, TimeUnit.SECONDS, new LinkedBlockingQueue<>(20), new ThreadPoolExecutor.CallerRunsPolicy());
+//        List<TOrderDetail> list = new ArrayList<>();
+        for (int i = 0; i < 1000000; i++) {
+            TOrderDetail tOrderDetail = new TOrderDetail();
+            tOrderDetail.setCode("CODE" + (i + 1));
+            tOrderDetail.setName("NAME" + (i + 1));
+            if (executor.getActiveCount() < executor.getMaximumPoolSize()) {
+                System.out.println("------------" + 1);
+                executor.execute(() -> tOrderDetailRepository.save(tOrderDetail));
+            } else {
+                System.out.println("------------" + 2);
+                tOrderDetailRepository.save(tOrderDetail);
+            }
+
+//            list.add(tOrderDetail);
+        }
+        executor.shutdown();
+        while (!executor.isTerminated()) {
+            try {
+                Thread.sleep(100);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
+        }
+//        tOrderDetailRepository.saveAll(list);
     }
 
     @Test

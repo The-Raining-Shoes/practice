@@ -9,27 +9,41 @@ import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.util.Objects;
 
+//        * AES/CBC/NoPadding (128)
+//        * AES/CBC/PKCS5Padding (128)
+//        * AES/ECB/NoPadding (128)
+//        * AES/ECB/PKCS5Padding (128)
+//        * DES/CBC/NoPadding (56)
+//        * DES/CBC/PKCS5Padding (56)
+//        * DES/ECB/NoPadding (56)
+//        * DES/ECB/PKCS5Padding (56)
+//        * DESede/CBC/NoPadding (168)
+//        * DESede/CBC/PKCS5Padding (168)
+//        * DESede/ECB/NoPadding (168)
+//        * DESede/ECB/PKCS5Padding (168)
+//        * RSA/ECB/PKCS1Padding (1024, 2048)
+//        * RSA/ECB/OAEPWithSHA-1AndMGF1Padding (1024, 2048)
+//        * RSA/ECB/OAEPWithSHA-256AndMGF1Padding (1024, 2048)
+
 public class Encrypt {
-    public static final String PREFIX = "{cipher.1}";
+    public static final String PREFIX = "{Base64.test}";
     private static String KEY_V1 = "TESSS-D-TEST";
     private static final String KEY_ALGORITHM = "AES";
     public static final int PREFIX_LENGTH = PREFIX.length();
     private static final String DEFAULT_CIPHER_ALGORITHM = "AES/ECB/PKCS5Padding";// 默认的加密算法
     private static final Charset DEFAULT_CHARSET = StandardCharsets.UTF_8;
-    private static final char[] INT_TO_BASE64 = { 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N',
+    private static final char[] INT_TO_BASE64 = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N',
             'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i',
             'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '0', '1', '2', '3',
-            '4', '5', '6', '7', '8', '9', '+', '/' };
-    private static final char[] INT_TO_ALT_BASE64 = { '!', '"', '#', '$', '%', '&', '\'', '(', ')', ',', '-', '.', ':',
+            '4', '5', '6', '7', '8', '9', '+', '/'};
+    private static final char[] INT_TO_ALT_BASE64 = {'!', '"', '#', '$', '%', '&', '\'', '(', ')', ',', '-', '.', ':',
             ';', '<', '>', '@', '[', ']', '^', '`', '_', '{', '|', '}', '~', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h',
             'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '0', '1', '2',
-            '3', '4', '5', '6', '7', '8', '9', '+', '?' };
+            '3', '4', '5', '6', '7', '8', '9', '+', '?'};
 
     public static void main(String[] args) {
-        System.out.println("1233211234567");
-        String a = encrypt("123");
-        System.out.println(encrypt("123"));
-        System.out.println(decrypt(a));
+        String a = encrypt("123321");
+        System.out.println(a);
     }
 
     // 加密
@@ -81,7 +95,7 @@ public class Encrypt {
     }
 
     /**
-     * @param content 待解密内容
+     * @param content  待解密内容
      * @param password 加密密码
      * @return 返回数据
      */

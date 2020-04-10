@@ -34,9 +34,9 @@ public class JdbcConfig {
 
     public static HikariDataSource getOracle176ResHJDs(int poolSize) {
         HikariConfig config = new HikariConfig();
-        config.setJdbcUrl("jdbc:mysql://localhost:/3306test");
-        config.setUsername("");
-        config.setPassword("");
+        config.setJdbcUrl("jdbc:mysql://39.106.114.95:3306/test");
+        config.setUsername("root");
+        config.setPassword("199678");
         config.setDriverClassName("com.mysql.cj.jdbc.Driver");
         config.setMaximumPoolSize(poolSize);
         return new HikariDataSource(config);
