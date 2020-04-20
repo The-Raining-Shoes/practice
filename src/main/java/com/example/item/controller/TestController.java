@@ -30,7 +30,6 @@ public class TestController {
         return "hello";
     }
 
-
     @PostMapping(value = "/testControllerAdvice")
     public String testControllerAdvice(@RequestBody TestDTO testClass) {
         System.out.println(testClass.getTestCode());
@@ -44,7 +43,4 @@ public class TestController {
         return "hello";
     }
 
-    public static void main(String[] args) {
-        System.out.println(2 << 3);
-    }
 }

@@ -1,6 +1,7 @@
 package com.example.item.utils;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.StringTokenizer;
 import java.util.regex.Pattern;
@@ -23,7 +24,7 @@ public class CheckUtil {
      */
     public static boolean isBlank(String str) {
         int strSize;
-        if (str == "" || (strSize = str.length()) == 0) {
+        if (str.equals("") || (strSize = str.length()) == 0) {
             return true;
         }
         for (int i = 0; i < strSize; i++) {
@@ -96,19 +97,17 @@ public class CheckUtil {
         if (null == separator) {
             char[] arr = str.toCharArray();
             List<String> stringList = new ArrayList<>();
-            for (int i = 0; i < arr.length; i++) {
-                stringList.add(String.valueOf(arr[i]));
+            for (char c : arr) {
+                stringList.add(String.valueOf(c));
             }
             return stringList;
         }
         //空格分割
-        if ("" == separator) {
+        if ("".equals(separator)) {
             /*把字符串转化为数组形式，并用正则表达式进行分割*/
             String[] c = str.split("\\s+");
             ArrayList<String> arr = new ArrayList<String>();
-            for (String ss : c) {
-                arr.add(ss);
-            }
+            Collections.addAll(arr, c);
             return arr;
         }
         ArrayList<String> arr = new ArrayList<String>();
