@@ -32,7 +32,7 @@ public class JdbcConfig {
         return DataSourceBuilder.create().build();
     }
 
-    public static HikariDataSource getOracle176ResHJDs(int poolSize) {
+    public static HikariDataSource getMysql3306ResHJDs(int poolSize) {
         HikariConfig config = new HikariConfig();
         config.setJdbcUrl("jdbc:mysql://39.106.114.95:3306/test");
         config.setUsername("root");

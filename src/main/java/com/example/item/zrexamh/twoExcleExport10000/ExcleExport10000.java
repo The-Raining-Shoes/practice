@@ -22,7 +22,7 @@ public class ExcleExport10000 {
 
     public static void main(String[] args) {
         final String filePath = "D:\\testss.xlsx";
-        JdbcTemplate jdbc = new JdbcTemplate(JdbcConfig.getOracle176ResHJDs(1));
+        JdbcTemplate jdbc = new JdbcTemplate(JdbcConfig.getMysql3306ResHJDs(1));
         String querySql = "select id from t_order_detail order by id ";
         List<Map<String, Object>> mapList = jdbc.queryForList(querySql);
         List<ExportEntity> list = new ArrayList<>();
