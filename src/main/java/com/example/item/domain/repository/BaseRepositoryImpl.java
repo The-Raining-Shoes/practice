@@ -1,7 +1,3 @@
-/**
- * Copyright 2008-2009. Chongqing Communications Industry Services Co.,Ltd Information Technology
- * Branch. All rights reserved. <a>http://www.crunii.com</a>
- */
 package com.example.item.domain.repository;
 
 import lombok.extern.slf4j.Slf4j;
@@ -62,29 +58,14 @@ public class BaseRepositoryImpl<T, ID extends Serializable> extends SimpleJpaRep
 //        return super.findAll(getPredicate(e), pageable);
 //    }
 
-    /**
-     * @see com.crunii.bss.db.repository.BaseRepository#findByEntity(java.lang.Object,
-     * org.springframework.data.jpa.domain.Specification)
-     */
 //    public List<T> findByEntity(T e, Specification<T> s) {
 //        return super.findAll(getPredicate(e).and(s));
 //    }
 
-
-    /**
-     * @see com.crunii.bss.db.repository.BaseRepository#findByEntity(java.lang.Object,
-     * org.springframework.data.jpa.domain.Specification, org.springframework.data.domain.Sort)
-     */
 //    public List<T> findByEntity(T e, Specification<T> s, Sort sort) {
 //        return super.findAll(getPredicate(e).and(s), sort);
 //    }
 
-
-    /**
-     * @see com.crunii.bss.db.repository.BaseRepository#findByEntity(java.lang.Object,
-     * org.springframework.data.jpa.domain.Specification,
-     * org.springframework.data.domain.Pageable)
-     */
 //    public Page<T> findByEntity(T e, Specification<T> s, Pageable pageable) {
 //        return super.findAll(getPredicate(e).and(s), pageable);
 //    }
