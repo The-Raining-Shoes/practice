@@ -21,6 +21,7 @@ public class LoginUserController {
 
     @PostMapping(value = "/login")
     public Result<Object> login(@RequestBody LoginDTO p) {
+        System.out.println(123);
         if (p.getUserName().equals("admin") && p.getPassword().equals("ant.design")) {
             return new Result<>(null);
         }
