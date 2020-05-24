@@ -1,6 +1,7 @@
 package com.example.item.zrexamh.nineSplitTest;
 
-import com.example.item.tools.checkPackage.CheckUtil;
+
+import com.example.item.utils.CheckUtil;
 
 /**
  * 中级分割

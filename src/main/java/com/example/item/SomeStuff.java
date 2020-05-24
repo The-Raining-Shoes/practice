@@ -1,18 +1,16 @@
 package com.example.item;
 
+import java.util.Arrays;
+import java.util.stream.Stream;
+
 /**
+ * 测试数据
+ *
  * @author HXM
  * @date 2020年04月13日 9:18
  */
 public class SomeStuff {
-
-    int i = 5;
-
-    static class puff {
-        public static void main(String[] args) {
-            SomeStuff someStuff = new SomeStuff();
-            System.out.println(someStuff.i);
-        }
+    public static void main(String[] args) {
+        System.out.println(Arrays.toString(Stream.of("13", "张三丰", "测试组", "是").filter(s -> s.startsWith("张")).filter(s -> s.length() == 3).distinct().toArray()).substring(1, Arrays.toString(Stream.of("13", "张三丰", "测试组", "是").filter(s -> s.startsWith("张")).filter(s -> s.length() == 3).distinct().toArray()).length() - 1));
     }
-
 }
