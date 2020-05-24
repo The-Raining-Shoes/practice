@@ -3,11 +3,7 @@ package com.example.item.controller;
 import com.example.item.domain.dto.LoginDTO;
 import com.example.item.domain.dto.Result;
 import com.example.item.exception.ErrorCode;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * 登陆测试
@@ -21,7 +17,6 @@ public class LoginUserController {
 
     @PostMapping(value = "/login")
     public Result<Object> login(@RequestBody LoginDTO p) {
-        System.out.println(123);
         if (p.getUserName().equals("admin") && p.getPassword().equals("ant.design")) {
             return new Result<>(null);
         }
