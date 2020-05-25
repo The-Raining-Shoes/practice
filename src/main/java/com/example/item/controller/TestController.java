@@ -23,7 +23,6 @@ public class TestController {
     @Setter(onMethod_ = @Autowired)
     private GoodsInfoRepository goodsInfoRepository;
 
-
     @GetMapping(value = "/testAopMethod")
     public String testAopMethod() {
         testService.tests();
@@ -32,7 +31,6 @@ public class TestController {
 
     @PostMapping(value = "/testControllerAdvice")
     public String testControllerAdvice(@RequestBody TestDTO testClass) {
-        System.out.println(testClass.getTestCode());
         return "hello";
     }
 
