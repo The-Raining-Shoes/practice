@@ -1,9 +1,11 @@
-package com.example.item.method;
+package com.example.item.method.arrayTest;
 
 import java.util.Arrays;
 import java.util.List;
 
 /**
+ * 插入排序
+ *
  * @author HXM
  * @date 2020年05月22日 14:57
  */

@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.stream.IntStream;
 
 /**
+ * stream类的使用
+ *
  * @author HXM
  * @date 2020年05月22日 17:10
  */

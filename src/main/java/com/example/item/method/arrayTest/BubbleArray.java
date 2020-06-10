@@ -1,4 +1,4 @@
-package com.example.item.method;
+package com.example.item.method.arrayTest;
 
 import java.util.Arrays;
 import java.util.List;

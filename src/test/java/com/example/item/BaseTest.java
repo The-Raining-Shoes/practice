@@ -2,6 +2,7 @@ package com.example.item;
 
 import com.example.item.domain.entity.TOrderDetail;
 import com.example.item.domain.repository.res.TOrderDetailRepository;
+import com.example.item.utils.CheckUtil;
 import lombok.Setter;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -19,6 +20,14 @@ public class BaseTest {
 
     @Setter(onMethod_ = @Autowired)
     private TOrderDetailRepository tOrderDetailRepository;
+
+    @Setter(onMethod_ = @Autowired)
+    private SomeStuff someStuff;
+
+    @Test
+    public void tests() {
+        System.out.println(CheckUtil.isNotBlank(someStuff));
+    }
 
     // 多线程跑数据demo
     @Test
