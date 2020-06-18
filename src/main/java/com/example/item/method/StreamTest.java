@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.stream.IntStream;
 
 /**
- * 数组同下表数相加
  * @author HXM
  * @date 2020年05月22日 17:10
  */
