@@ -5,6 +5,10 @@ import com.example.item.domain.dto.Result;
 import com.example.item.exception.ErrorCode;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
 /**
  * 登陆测试
  *
@@ -30,5 +34,11 @@ public class LoginUserController {
         loginDTO.setName("毛豪");
         loginDTO.setUserId(1);
         return new Result<>(loginDTO);
+    }
+
+    public static void main(String[] args) {
+        List<String> list = Stream.of("1","2","3").distinct().collect(Collectors.toList());
+        System.out.println(list
+        );
     }
 }
