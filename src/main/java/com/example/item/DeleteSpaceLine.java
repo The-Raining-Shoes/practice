@@ -22,7 +22,7 @@ public class DeleteSpaceLine {
         try {
             br = new BufferedReader(new FileReader(filePath));
             while ((line = br.readLine()) != null) {
-                if (line.equals("")) {
+                if (line.equals("") || line.contains("/**") || line.contains("*") || line.contains("*/") || line.contains("//")) {
                     System.out.println("空格不处理");
                 } else {
                     bufAll.append(line).append("\r\n");
@@ -86,10 +86,10 @@ public class DeleteSpaceLine {
 
     public static void main(String[] args) {
 //        String scanfPath = "D:/TstFilePath/WorkSpace-tongfurenzis/hr-service/hr-core/src";
-//        String scanfPath1 = "D:/TstFilePath/WorkSpace-tongfurenzis/hr-service/hr-intf/src";
-//        String scanfPath2 = "D:/TstFilePath/WorkSpace-tongfurenzis/hr-service/hr-web/src";
-        String scanfPath3 = "D:/TstFilePath/WorkSpace-tongfurenzis/webapp/src";
-        scanfFile(scanfPath3);
+//        String scanfPath = "D:/TstFilePath/WorkSpace-tongfurenzis/hr-service/hr-intf/src";
+//        String scanfPath = "D:/TstFilePath/WorkSpace-tongfurenzis/hr-service/hr-web/src";
+        String scanfPath = "D:/TstFilePath/WorkSpace-tongfurenzis/webapp/src";
+        scanfFile(scanfPath);
     }
 
     static void scanfFile(String scanfPath) {
