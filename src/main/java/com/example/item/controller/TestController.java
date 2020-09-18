@@ -46,4 +46,8 @@ public class TestController {
         return "hello";
     }
 
+    @GetMapping(value = "/testDoubleParam")
+    public String testDoubleParam(String param) {
+        return param;
+    }
 }

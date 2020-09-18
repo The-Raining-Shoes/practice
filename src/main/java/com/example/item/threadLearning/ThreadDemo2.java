@@ -151,11 +151,11 @@ public class ThreadDemo2 {
             lock.unlock();
         };
 
+        es.submit(run1);
         es.submit(run2);
         es.submit(run3);
         es.submit(run4);
         es.submit(run5);
-        es.submit(run1);
 
         try {
             cdl.await();//保证所有线程都执行完成之后 主线程才会继续执行

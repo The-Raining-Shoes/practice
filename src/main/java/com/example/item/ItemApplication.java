@@ -11,7 +11,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @EnableJpaRepositories()
 @EnableCaching
 //可以用自建JPA源
-//@EnableJpaRepositories(repositoryFactoryBeanClass = JpaRepositoryFactoryBean.class)
+//@EnableJpaRepositories(repositoryFactoryBeanClass = BaseRepositoryFactoryBean.class)
 public class ItemApplication {
 
     public static void main(String[] args) {

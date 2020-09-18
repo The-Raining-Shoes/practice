@@ -29,6 +29,7 @@ public class JdbcConfig {
 //       return DataSourceBuilder.create().build()
 //       3.创建jdbc对象 传入自定义数据源(如下getOracle176ResHJDs())
 //       JdbcTemplate jdbcTemplate = new JdbcTemplate(getOracle176ResHJDs(5));
+//       4.使用spring自动数据源配置(properties中配置)
         return DataSourceBuilder.create().build();
     }
 
