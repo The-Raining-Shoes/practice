@@ -5,14 +5,13 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
-import org.springframework.data.jpa.repository.support.JpaRepositoryFactoryBean;
 
 
 @SpringBootApplication(exclude = {DataSourceAutoConfiguration.class})
-//@EnableJpaRepositories()
+@EnableJpaRepositories()
 @EnableCaching
 //可以用自建JPA源
-@EnableJpaRepositories(repositoryFactoryBeanClass = JpaRepositoryFactoryBean.class)
+//@EnableJpaRepositories(repositoryFactoryBeanClass = BaseRepositoryFactoryBean.class)
 public class ItemApplication {
 
     public static void main(String[] args) {
