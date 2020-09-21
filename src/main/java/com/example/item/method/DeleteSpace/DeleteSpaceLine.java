@@ -1,4 +1,4 @@
-package com.example.item;
+package com.example.item.method.DeleteSpace;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
