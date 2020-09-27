@@ -54,7 +54,7 @@ public class SendMail {
             // 抄送人
             String[] copy = {""};
             //发邮件的测试方法
-            if (sendEmail("625430265@qq.com", "shryslexyeyqbeci", "四单数据.xlsx", "1979274692@qq.com", sendMail.getMailList(copy), sendMail.creatExcel())) {
+            if (sendEmail("625430265@qq.com", "shryslexyeyqbeci", "四单数据.xlsx", "maohao.cq@chinaccs.cn", sendMail.getMailList(copy), sendMail.creatExcel())) {
                 System.out.println("成功");
             } else {
                 System.out.println("失败");
@@ -68,11 +68,23 @@ public class SendMail {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         List<String> list = new ArrayList<>();
         List<Object[]> dataList = new ArrayList<>();
-        list.add("标题1");
-        list.add("标题2");
-        String[] str = new String[2];
-        str[0] = "测试";
-        str[1] = "测试数据啊啊啊";
+        list.add("工单编码");
+        list.add("工单内容");
+        list.add("分公司");
+        list.add("员工工号");
+        list.add("员工");
+        list.add("业务号码");
+        list.add("联系人");
+        list.add("联系电话");
+        list.add("要求回复时间");
+        list.add("工单状态");
+        list.add("工单完成时间");
+        list.add("类型");
+        list.add("创建时间");
+        String[] str = new String[3];
+        str[0] = "测试1";
+        str[1] = "测试数据2";
+        str[2] = "测试数据3";
         dataList.add(str);
         //创建一个表格
         Workbook workbook = this.handleExcel(list.toArray(new String[0]), dataList);
@@ -89,7 +101,7 @@ public class SendMail {
             fs = new POIFSFileSystem();
             EncryptionInfo info = new EncryptionInfo(EncryptionMode.standard);
             Encryptor enc = info.getEncryptor();
-            enc.confirmPassword("123456");//打开excel 密码
+            enc.confirmPassword("qywx,.2020");//打开excel 密码
             // 然后把字节输入到输入流，然后输入到OPC包里面
             opc = OPCPackage.open(workbooks);
             os = enc.getDataStream(fs);
