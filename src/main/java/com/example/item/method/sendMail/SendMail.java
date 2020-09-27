@@ -54,7 +54,7 @@ public class SendMail {
             // 抄送人
             String[] copy = {""};
             //发邮件的测试方法
-            if (sendEmail("625430265@qq.com", "shryslexyeyqbeci", "四单数据.xlsx", "maohao.cq@chinaccs.cn", sendMail.getMailList(copy), sendMail.creatExcel())) {
+            if (sendEmail("test", "test#", "四单数据.xlsx", "test", sendMail.getMailList(copy), sendMail.creatExcel())) {
                 System.out.println("成功");
             } else {
                 System.out.println("失败");
@@ -119,7 +119,7 @@ public class SendMail {
         // 获取系统属性
         Properties properties = System.getProperties();
         // 设置邮件服务器 ->QQ 邮件服务器
-        properties.setProperty("mail.smtp.host", "smtp.qq.com");
+        properties.setProperty("mail.smtp.host", "smtp.189.cn");
         properties.put("mail.smtp.auth", "true");
         // 获取默认session对象
         Session session = Session.getDefaultInstance(properties, new Authenticator() {
