@@ -17,7 +17,7 @@ import java.util.Stack;
  */
 public class HighSplitTest {
     public static void main(String[] args) {
-        String expression = "file{(a)222}<xxxxx[bb(cc)]{321[ddd](eeee)}>";
+        String expression = "file{12312(a)222}<xxxxx[bb(cc)]{321[ddd](eeee)}>";
         char[] chars = expression.toCharArray();
         Stack<Object> stack = new Stack<>();
         for (char t : chars) {

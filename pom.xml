@@ -27,6 +27,14 @@
 
 
     <dependencies>
+
+        <!-- 支付宝 -->
+        <dependency>
+            <groupId>com.alipay.sdk</groupId>
+            <artifactId>alipay-sdk-java</artifactId>
+            <version>3.0.0</version>
+        </dependency>
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter</artifactId>
@@ -38,11 +46,11 @@
             <scope>test</scope>
         </dependency>
 
-        <dependency >
-            <groupId >com.sun.mail </groupId >
-            <artifactId >javax.mail </artifactId >
-            <version >1.5.4 </version >
-        </dependency >
+        <dependency>
+            <groupId>com.sun.mail</groupId>
+            <artifactId>javax.mail</artifactId>
+            <version>1.5.4</version>
+        </dependency>
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -191,10 +199,10 @@
         </dependency>
 
         <!-- springSecurity -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-security</artifactId>
-        </dependency>
+        <!--        <dependency>-->
+        <!--            <groupId>org.springframework.boot</groupId>-->
+        <!--            <artifactId>spring-boot-starter-security</artifactId>-->
+        <!--        </dependency>-->
 
         <!-- https://mvnrepository.com/artifact/org.jodd/jodd-core -->
         <dependency>
