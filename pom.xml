@@ -80,12 +80,6 @@
             <version>1.10.6</version>
         </dependency>
 
-        <!-- 测试类 -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-        </dependency>
-
         <!-- springdata jpa依赖 -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -229,6 +223,19 @@
             <groupId>com.googlecode.soundlibs</groupId>
             <artifactId>mp3spi</artifactId>
             <version>1.9.5.4</version>
+        </dependency>
+
+        <!--生成二维码-->
+        <dependency>
+            <groupId>com.google.zxing</groupId>
+            <artifactId>core</artifactId>
+            <version>3.3.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-extra</artifactId>
+            <version>5.4.3</version>
         </dependency>
 
     </dependencies>

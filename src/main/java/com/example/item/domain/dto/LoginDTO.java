@@ -1,14 +1,12 @@
 package com.example.item.domain.dto;
 
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 
 /**
  * @author HXM
  * @date 2020年04月22日 9:17
  */
 @Data
-@EqualsAndHashCode(callSuper = false)
 public class LoginDTO {
     private String password;
     private String type;

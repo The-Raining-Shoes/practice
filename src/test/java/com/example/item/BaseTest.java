@@ -4,27 +4,25 @@ import com.example.item.domain.entity.TOrderDetail;
 import com.example.item.domain.repository.res.TOrderDetailRepository;
 import lombok.Setter;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
-//@RunWith(value = SpringRunner.class)
 @SpringBootTest
+@RunWith(SpringRunner.class)
 public class BaseTest {
 
     @Setter(onMethod_ = @Autowired)
     private TOrderDetailRepository tOrderDetailRepository;
 
-    @Setter(onMethod_ = @Autowired)
-    private SomeStuff someStuff;
-
     @Test
     public void tests() {
-        System.out.println(someStuff);
-        System.out.println(someStuff.getClass());
+        System.out.println(tOrderDetailRepository.getClass());
         System.out.println(1);
     }
 
