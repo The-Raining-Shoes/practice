@@ -1,5 +1,7 @@
 package com.example.item;
 
+import com.example.item.domain.dto.LoginDTO;
+import com.example.item.utils.JsonUtil;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -12,27 +14,13 @@ import lombok.extern.slf4j.Slf4j;
 public class SomeStuff {
 
     public static void main(String[] args) {
-        int ladder = 4;
-        int maxJump = 2;
-        int i = calculateCount(ladder, maxJump);
-        System.out.println(i);
-    }
-
-    private static int calculateCount(int ladder, int maxJump) {
-        int jump = 0;
-        if (ladder == 0) {
-            return 1;
-        }
-        if (ladder >= maxJump) {
-            // 剩下的楼梯大于最大可跳跃数
-            for (int i = 1; i <= maxJump; i++) {
-                jump += calculateCount(ladder - i, maxJump);
-            }
-        } else {
-            // 剩下的楼梯不足最大可跳跃数
-            jump = calculateCount(ladder, ladder);
-        }
-        return jump;
+        String a = "{\n" +
+                   "    \"password\": 1,\n" +
+                   "    \"type\": 1,\n" +
+                   "    \"userName\": \"测试\"\n" +
+                   "}";
+        LoginDTO loginDTO = JsonUtil.fromJson(a, LoginDTO.class);
+        System.out.println(loginDTO);
     }
 
 }
