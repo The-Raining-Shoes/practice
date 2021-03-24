@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -30,6 +31,15 @@ public class LoginUserController {
     //仅测试使用
     @GetMapping(value = "/currentUser")
     public Result<LoginDTO> refreshToken() {
+        LoginDTO loginDTO = new LoginDTO();
+        loginDTO.setName("毛豪");
+        loginDTO.setUserId(1);
+        return new Result<>(loginDTO);
+    }
+
+    @GetMapping(value = "/loginTest")
+    public Result<LoginDTO> refreshSToken(@RequestParam String a, @RequestParam String b) {
+        System.out.println(a == b);
         LoginDTO loginDTO = new LoginDTO();
         loginDTO.setName("毛豪");
         loginDTO.setUserId(1);

@@ -6,7 +6,6 @@ import com.example.item.domain.repository.res.GoodsInfoRepository;
 import com.example.item.service.TestService;
 import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -25,12 +24,9 @@ public class TestController {
     private TestService testService;
     @Setter(onMethod_ = @Autowired)
     private GoodsInfoRepository goodsInfoRepository;
-    @Setter(onMethod_ = @Autowired)
-    private RedisTemplate<String, String> redisTemplate;
 
     @GetMapping(value = "/testAopMethod")
     public String testAopMethod() {
-        redisTemplate.opsForValue().set("myKey", "myValue");
 //        testService.tests();
         return "hello";
     }

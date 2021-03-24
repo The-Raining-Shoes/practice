@@ -1,7 +1,7 @@
 package com.example.item.domain.dto;
 
-import com.fasterxml.jackson.annotation.JsonAlias;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -15,7 +15,8 @@ import java.io.Serializable;
 public class LoginDTO implements Serializable {
     private static final long serialVersionUID = 7895199923008942197L;
 
-    @JsonAlias({"passAge"})
+
+    @JsonProperty("passAge")
     private String password;
     private String type;
     private String userName;
