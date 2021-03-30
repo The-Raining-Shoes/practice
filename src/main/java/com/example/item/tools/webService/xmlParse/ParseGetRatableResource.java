@@ -1,4 +1,4 @@
-package com.example.item.tools.webService.info;
+package com.example.item.tools.webService.xmlParse;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -38,28 +38,31 @@ public class ParseGetRatableResource {
             List<TestMode> resultList = new ArrayList<>();
             List<Element> list = root.elements();//如果当前跟节点有子节点，找到子节点
             for (Element e : list) {//遍历每个节点
+                Element es = (Element) e.selectSingleNode("id");
+                System.out.println(es.getTextTrim());
                 if (e.elements().size() > 0) {
                     if (e.getName().equals("multiRef")) {
                         List<Element> elements = e.elements();
                         if (elements.size() > 0) {
                             TestMode testMode = new TestMode();
-                            testMode.setAccNbr("-1");
                             // 解析具体节点
                             for (Element element : elements) {
-                                if (element.getName().equals("accNbr")) {
-                                    testMode.setAccNbr(element.getTextTrim());
-                                }
-                                if (element.getName().equals("overTop")) {
-                                    testMode.setOverTop(element.getTextTrim());
-                                }
-                                if (element.getName().equals("unitTypeId")) {
-                                    testMode.setUnitTypeId(element.getTextTrim());
-                                }
-                                if (element.getName().equals("useValue")) {
-                                    testMode.setUseValue(element.getTextTrim());
+                                switch (element.getName()) {
+                                    case "accNbr":
+                                        testMode.setAccNbr(element.getTextTrim());
+                                        break;
+                                    case "overTop":
+                                        testMode.setOverTop(element.getTextTrim());
+                                        break;
+                                    case "unitTypeId":
+                                        testMode.setUnitTypeId(element.getTextTrim());
+                                        break;
+                                    case "useValue":
+                                        testMode.setUseValue(element.getTextTrim());
+                                        break;
                                 }
                             }
-                            if (!testMode.getAccNbr().equals("-1")) {
+                            if (testMode.getAccNbr() != null) {
                                 resultList.add(testMode);
                             }
                         }
