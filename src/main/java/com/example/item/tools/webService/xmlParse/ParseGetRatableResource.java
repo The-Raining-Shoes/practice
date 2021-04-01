@@ -38,33 +38,15 @@ public class ParseGetRatableResource {
             List<TestMode> resultList = new ArrayList<>();
             List<Element> list = root.elements();//如果当前跟节点有子节点，找到子节点
             for (Element e : list) {//遍历每个节点
-                Element es = (Element) e.selectSingleNode("id");
-                System.out.println(es.getTextTrim());
                 if (e.elements().size() > 0) {
                     if (e.getName().equals("multiRef")) {
-                        List<Element> elements = e.elements();
-                        if (elements.size() > 0) {
+                        if (null != e.element("accNbr")) {
                             TestMode testMode = new TestMode();
-                            // 解析具体节点
-                            for (Element element : elements) {
-                                switch (element.getName()) {
-                                    case "accNbr":
-                                        testMode.setAccNbr(element.getTextTrim());
-                                        break;
-                                    case "overTop":
-                                        testMode.setOverTop(element.getTextTrim());
-                                        break;
-                                    case "unitTypeId":
-                                        testMode.setUnitTypeId(element.getTextTrim());
-                                        break;
-                                    case "useValue":
-                                        testMode.setUseValue(element.getTextTrim());
-                                        break;
-                                }
-                            }
-                            if (testMode.getAccNbr() != null) {
-                                resultList.add(testMode);
-                            }
+                            testMode.setAccNbr(e.element("accNbr").getTextTrim());
+                            testMode.setOverTop(e.element("overTop") == null ? "" : e.element("overTop").getTextTrim());
+                            testMode.setUnitTypeId(e.element("unitTypeId") == null ? "" : e.element("unitTypeId").getTextTrim());
+                            testMode.setUseValue(e.element("useValue") == null ? "" : e.element("useValue").getTextTrim());
+                            resultList.add(testMode);
                         }
                     }
                 }
