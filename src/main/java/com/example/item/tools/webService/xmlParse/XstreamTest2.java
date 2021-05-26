@@ -9,6 +9,8 @@ import lombok.Data;
 import java.util.List;
 
 /**
+ * 集团累积量查询
+ *
  * @author HXM
  * @date 2021年03月31日 9:25
  */

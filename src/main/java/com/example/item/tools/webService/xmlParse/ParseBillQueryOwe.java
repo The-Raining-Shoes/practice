@@ -1,5 +1,6 @@
 package com.example.item.tools.webService.xmlParse;
 
+import com.example.item.tools.webService.dto.BillQueryOweVO;
 import com.example.item.tools.webService.dto.GroupBase;
 
 /**
@@ -25,7 +26,8 @@ public class ParseBillQueryOwe {
                      "   </soapenv:Body>\n" +
                      "</soapenv:Envelope>";
         GroupBase userGroupBaseVO = XmlUtils.convertXmlToBean(xml, GroupBase.class);
-        System.out.println(userGroupBaseVO.getBody().getUserGroupBaseVO().getContent());
+        BillQueryOweVO billQueryOweVO = XmlUtils.convertXmlToBean(userGroupBaseVO.getBody().getUserGroupBaseVO().getContent().split("<Session-Id>")[0], BillQueryOweVO.class);
+        System.out.println(billQueryOweVO);
     }
 
 }

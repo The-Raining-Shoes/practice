@@ -1,6 +1,7 @@
 package com.example.item.controller;
 
 import com.example.item.service.TestService;
+import lombok.NonNull;
 import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,7 +22,7 @@ public class CacheTestController {
     private TestService testService;
 
     @GetMapping(value = "/test")
-    public String testCache(String testCode) {
+    public String testCache(@NonNull String testCode) {
         return testService.testCache(testCode);
     }
 

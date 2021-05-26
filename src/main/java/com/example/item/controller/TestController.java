@@ -4,6 +4,7 @@ import com.example.item.domain.dto.TestDTO;
 import com.example.item.domain.entity.GoodsInfo;
 import com.example.item.domain.repository.res.GoodsInfoRepository;
 import com.example.item.service.TestService;
+import lombok.NonNull;
 import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,7 +27,8 @@ public class TestController {
     private GoodsInfoRepository goodsInfoRepository;
 
     @GetMapping(value = "/testAopMethod")
-    public String testAopMethod() {
+    public String testAopMethod(@NonNull String testCode) {
+        System.out.println(testCode);
 //        testService.tests();
         return "hello";
     }
@@ -50,7 +52,9 @@ public class TestController {
     }
 
     @GetMapping(value = "/testDoubleParam")
-    public String testDoubleParam(String param) {
-        return param;
+    public String testDoubleParam(Object param) {
+        System.out.println(param instanceof Integer);
+        System.out.println(param instanceof String);
+        return param.toString();
     }
 }
