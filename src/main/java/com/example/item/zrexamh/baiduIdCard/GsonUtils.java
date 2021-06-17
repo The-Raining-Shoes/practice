@@ -13,7 +13,7 @@ import java.lang.reflect.Type;
  * Json工具类.
  */
 public class GsonUtils {
-    private static Gson gson = new GsonBuilder().create();
+    private static final Gson gson = new GsonBuilder().create();
 
     public static String toJson(Object value) {
         return gson.toJson(value);
