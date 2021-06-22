@@ -19,7 +19,7 @@ public class CheckUtil {
     /**
      * 判断是否为空
      *
-     * @param str,Object
+     * @param str,Object s
      * @return boolean
      */
     public static boolean isBlank(String str) {
@@ -61,7 +61,7 @@ public class CheckUtil {
     /**
      * 判断是否为手机号
      *
-     * @param value
+     * @param value s
      * @return boolean
      */
     public static boolean isPhone(Object value) {
@@ -76,7 +76,7 @@ public class CheckUtil {
     /**
      * 去除字符串空格
      *
-     * @param str
+     * @param str s
      * @return boolean
      */
     public static String realStringValue(String str) {
@@ -89,7 +89,7 @@ public class CheckUtil {
     /**
      * 根据指定符号进行分割(传入参数,分割符)
      *
-     * @param str,separator
+     * @param str,separator s
      * @return ArrayList<String>
      */
     public static List<String> StringSplitToArrayList(String str, String separator) {
@@ -106,7 +106,7 @@ public class CheckUtil {
         if ("".equals(separator)) {
             /*把字符串转化为数组形式，并用正则表达式进行分割*/
             String[] c = str.split("\\s+");
-            ArrayList<String> arr = new ArrayList<String>();
+            ArrayList<String> arr = new ArrayList<>();
             Collections.addAll(arr, c);
             return arr;
         }
@@ -124,18 +124,14 @@ public class CheckUtil {
     /**
      * 检测传入参数是否相等(排除空指针情况)
      *
-     * @param str1,str2
+     * @param str1,str2 s
      * @return boolean
      */
     public static boolean checkEquals(String str1, String str2) {
         if (str1 == null && str2 == null) {
             return true;
         } else if (str1 != null && str2 != null) {
-            if (str1.equals(str2)) {
-                return true;
-            } else {
-                return false;
-            }
+            return str1.equals(str2);
         }
         return false;
     }
@@ -143,7 +139,7 @@ public class CheckUtil {
     /**
      * 将传入字符串进行顺序排序(英文字母顺序)
      *
-     * @param str,str2
+     * @param str,str2 s
      * @return boolean
      */
     public static String StringAscSort(String str) {
@@ -163,7 +159,7 @@ public class CheckUtil {
     /**
      * 将传入字符串进行倒序排序(字母顺序倒叙)
      *
-     * @param str,str2
+     * @param str,str2 s
      * @return boolean
      */
     public static String StringDescSort(String str) {
@@ -180,6 +176,4 @@ public class CheckUtil {
         return String.valueOf(arr);
     }
 
-    public static void main(String[] args) {
-    }
 }

@@ -3,11 +3,12 @@ package com.example.item.controller;
 import com.example.item.domain.dto.LoginDTO;
 import com.example.item.domain.dto.Result;
 import com.example.item.exception.ErrorCode;
-import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 /**
  * 登陆测试
@@ -36,9 +37,12 @@ public class LoginUserController {
         return new Result<>(loginDTO);
     }
 
-    public static void main(String[] args) {
-        List<String> list = Stream.of("1","2","3").distinct().collect(Collectors.toList());
-        System.out.println(list
-        );
+    @GetMapping(value = "/loginTest")
+    public Result<LoginDTO> refreshSToken(@RequestParam String a, @RequestParam String b) {
+        System.out.println(a == b);
+        LoginDTO loginDTO = new LoginDTO();
+        loginDTO.setName("毛豪");
+        loginDTO.setUserId(1);
+        return new Result<>(loginDTO);
     }
 }

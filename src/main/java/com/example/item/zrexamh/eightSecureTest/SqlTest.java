@@ -1,10 +1,5 @@
 package com.example.item.zrexamh.eightSecureTest;
 
-/**
- * @author HXM
- * @date 2020年04月09日 10:17
- */
-
 import com.example.item.tools.encryption.Encrypt;
 
 import java.sql.Connection;
@@ -37,14 +32,8 @@ public class SqlTest {
 
     /**
      * <pre> 模拟登录方法</pre>
-     *
-     * @param tableName
-     * @param user
-     * @param key
-     * @throws Exception
      */
     public static void loginTest(String tableName, User user, String key) throws Exception {
-
         String currKey = getCheckSn(user.getUserName(), user.getUserPwd());
         if (key.equals(currKey)) {
             System.out.println("Data not change!" + user);
@@ -69,10 +58,6 @@ public class SqlTest {
 
     /**
      * <pre>通过username, userPwd产生Key</pre>
-     *
-     * @param userName
-     * @param userPwd
-     * @return
      */
     public static String getCheckSn(String userName, String userPwd) {
         return Encrypt.encrypt(userName, userPwd);
@@ -80,8 +65,6 @@ public class SqlTest {
 
     /**
      * <pre>测试方法，不允许修改</pre>
-     *
-     * @param user
      */
     public static void changeData(User user) {
         user.setUserName(user.getUserName() + "_1");
@@ -90,9 +73,6 @@ public class SqlTest {
 
     /**
      * <pre>加密方法</pre>
-     *
-     * @param param
-     * @return
      */
     public static String encode(String param) {
         return Encrypt.encrypt(param);
@@ -100,9 +80,6 @@ public class SqlTest {
 
     /**
      * <pre>解密方法</pre>
-     *
-     * @param param
-     * @return
      */
     public static String decode(String param) {
         return Encrypt.decrypt(param);

@@ -16,6 +16,10 @@ target/
 
 /.project
 
+/.idea
+
+*.iml
+
 /.settings
 
 /*.launch

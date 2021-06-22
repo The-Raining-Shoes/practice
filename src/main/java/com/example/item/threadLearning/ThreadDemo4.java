@@ -25,9 +25,10 @@ public class ThreadDemo4 {
                 while (flag != 1) {
                     cd1.await();
                 }
+                System.out.println("cd1复活了");
                 System.out.println(1);
                 flag = 2;
-                cd2.signal();
+//                cd2.signal();
                 lock.unlock();
             } catch (InterruptedException e) {
                 e.printStackTrace();
@@ -40,9 +41,10 @@ public class ThreadDemo4 {
                 while (flag != 2) {
                     cd2.await();
                 }
+                System.out.println("cd2复活了");
                 System.out.println(2);
                 flag = 1;
-                cd1.signal();
+//                cd1.signal();
                 lock.unlock();
             } catch (InterruptedException e) {
                 e.printStackTrace();

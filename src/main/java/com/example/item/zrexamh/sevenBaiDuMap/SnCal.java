@@ -46,7 +46,7 @@ public class SnCal {
     }
 
     // 来自stackoverflow的MD5计算方法，调用了MessageDigest库函数，并把byte数组结果转换成16进制
-    public String MD5(String md5) {
+    public static String MD5(String md5) {
         try {
             java.security.MessageDigest md = java.security.MessageDigest
                     .getInstance("MD5");
@@ -60,4 +60,5 @@ public class SnCal {
         }
         return null;
     }
+
 }

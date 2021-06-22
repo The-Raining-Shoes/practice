@@ -13,7 +13,7 @@ public class FtpDemo {
 
     public static void main(String[] args) {
 
-        //获取本地需要上传的文件，此处只用作测试
+        //获取本地需要上传的文件，此处只作为测试
         File file = new File("D:\\test\\ftp.txt");
 
         if (file.isFile() && file.exists()) {
