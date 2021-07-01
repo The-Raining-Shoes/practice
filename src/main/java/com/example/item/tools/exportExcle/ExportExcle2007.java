@@ -1,6 +1,6 @@
 package com.example.item.tools.exportExcle;
 
-import com.example.item.utils.CheckUtil;
+import com.example.item.utils.CheckUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.poi.ss.usermodel.BorderStyle;
 import org.apache.poi.ss.usermodel.Cell;
@@ -133,7 +133,7 @@ public class ExportExcle2007 {
             Row row = sheet.createRow(i + 1);// 创建所需的行数
             for (int j = 0; j < obj.length; j++) {
                 Cell cell = row.createCell(j, CellType.STRING);
-                if (CheckUtil.isNotBlank(obj)) {
+                if (CheckUtils.isNotBlank(obj)) {
                     cell.setCellValue(obj[j].toString()); // 设置单元格的值
                 } else {
                     cell.setCellValue(""); // 设置单元格的值

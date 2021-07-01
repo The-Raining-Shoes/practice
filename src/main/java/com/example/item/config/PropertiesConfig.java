@@ -1,6 +1,6 @@
 package com.example.item.config;
 
-import com.example.item.utils.CheckUtil;
+import com.example.item.utils.CheckUtils;
 import org.springframework.beans.factory.config.PropertiesFactoryBean;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.ApplicationEvent;
@@ -49,7 +49,7 @@ public class PropertiesConfig implements ApplicationListener {
             config.afterPropertiesSet();
             Properties prop = config.getObject();
             //循环遍历所有得键值对并且存入集合
-            if (prop != null && CheckUtil.isNotBlank(prop.stringPropertyNames())) {
+            if (prop != null && CheckUtils.isNotBlank(prop.stringPropertyNames())) {
                 for (String key : prop.stringPropertyNames()) {
                     map.put(key, (String) prop.get(key));
                 }
