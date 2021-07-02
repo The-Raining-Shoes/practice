@@ -1,6 +1,6 @@
 package com.example.item.method.ftpUtil;
 
-import com.example.item.utils.CheckUtils;
+import com.example.item.utils.CheckUtil;
 import com.example.item.utils.StringUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.net.ftp.FTPClient;
@@ -85,7 +85,7 @@ public class FtpUtil {
         boolean ifPut = false;
         boolean ifRename = false;
         connect();
-        if (CheckUtils.isNotBlank(REMOTE_PATH)) {
+        if (CheckUtil.isNotBlank(REMOTE_PATH)) {
             // 切换FTP上传路径
             changeWorkingDirectory(REMOTE_PATH);
             // 上传中文件名
@@ -229,7 +229,7 @@ public class FtpUtil {
     // 文件名规范"n00_{系统英文缩写}_{周期类型缩写}_{Table名称}_{帐期时间}[_{01}].dat"
     private String dealFileNameWithTable(String table) {
         StringBuilder fileName = new StringBuilder();
-        if (CheckUtils.isNotBlank(table)) {
+        if (CheckUtil.isNotBlank(table)) {
             fileName.append("n00")
                     .append("_qywx")
                     .append("_id")

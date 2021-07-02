@@ -14,7 +14,7 @@ import java.util.regex.Pattern;
  * @date 2019年8月1日
  */
 
-public class CheckUtils {
+public class CheckUtil {
 
     /**
      * 判断是否为空

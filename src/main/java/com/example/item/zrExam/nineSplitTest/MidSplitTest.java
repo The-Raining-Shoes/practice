@@ -1,7 +1,7 @@
 package com.example.item.zrExam.nineSplitTest;
 
 
-import com.example.item.utils.CheckUtils;
+import com.example.item.utils.CheckUtil;
 
 /**
  * 中级分割
@@ -24,7 +24,7 @@ public class MidSplitTest {
                 trues = false;
             }
             if (trues) {
-                if (CheckUtils.isNotBlank(adsad)) {
+                if (CheckUtil.isNotBlank(adsad)) {
                     a.append(adsad);
                 }
             } else {

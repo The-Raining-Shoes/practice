@@ -88,14 +88,14 @@ public class DeleteSpaceLine {
 //        String scanfPath = "D:/WorkSpace-weixin/open-api/src/main/java";
 //        String scanfPath = "D:/WorkSpace-weixin/database-entity/src/main/java";
 //        String scanfPath = "D:/WorkSpace-weixin/manager-api/src/main/java";
-//        String scanfPath = "D:/WorkSpace-weixin/weixin-receive-web/src/main/java";
-//        String scanfPath = "D:/WorkSpace-weixin/manager-job/src/main/java";
-        String scanfPath = "D:/WorkSpace-weixin/manager-webapp/src/pages";
+//        String scanfPath = "D:/WxWork-noMove/weixin-receive-web/src/main/java";
+        String scanfPath = "D:/WorkSpace-weixin/manager-job/src/main/java";
+//        String scanfPath = "D:/WorkSpace-weixin/manager-webapp/src/pages";
         scanfFile(scanfPath);
     }
 
     static void scanfFile(String scanfPath) {
-        String filePath1 = "D:/20210326.txt";
+        String filePath1 = "D:/20210702.txt";
         // 递归循环取所有文件
         File file = new File(scanfPath);
         if (file.exists()) {

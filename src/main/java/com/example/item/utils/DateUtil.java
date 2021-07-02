@@ -5,7 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
-public class DateUtils {
+public class DateUtil {
 
     /**
      * 根据时间戳转格式化时间

@@ -1,6 +1,9 @@
 package com.example.item.aspect;
 
+import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
@@ -11,6 +14,9 @@ import javax.servlet.http.HttpServletResponse;
 @Slf4j
 @Component
 public class CurrentLimitInterceptor implements HandlerInterceptor {
+
+    @Setter(onMethod_ = @Autowired)
+    private JdbcTemplate jdbcTemplate;
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) {

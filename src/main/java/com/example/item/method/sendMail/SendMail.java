@@ -1,6 +1,6 @@
 package com.example.item.method.sendMail;
 
-import com.example.item.utils.CheckUtils;
+import com.example.item.utils.CheckUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.apache.poi.openxml4j.opc.OPCPackage;
@@ -201,7 +201,7 @@ public class SendMail {
             Row row = sheet.createRow(i + 1);// 创建所需的行数
             for (int j = 0; j < obj.length; j++) {
                 Cell cell = row.createCell(j, CellType.STRING);
-                if (CheckUtils.isNotBlank(obj)) {
+                if (CheckUtil.isNotBlank(obj)) {
                     cell.setCellValue(obj[j].toString()); // 设置单元格的值
                 } else {
                     cell.setCellValue(""); // 设置单元格的值
