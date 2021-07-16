@@ -26,4 +26,9 @@ public class CacheTestController {
         return testService.testCache(testCode);
     }
 
+    @GetMapping(value = "/clearCache")
+    public String clearCache() {
+        return testService.clearCache();
+    }
+
 }

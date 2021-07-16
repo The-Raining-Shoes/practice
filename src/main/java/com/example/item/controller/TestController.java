@@ -5,8 +5,18 @@ import lombok.NonNull;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping(value = "/test")
+@RequestMapping(value = "/TestController")
 public class TestController {
+
+    @GetMapping(value = "/test")
+    public String test() {
+        return "hello";
+    }
+
+    @GetMapping(value = "/test3")
+    public String test3() {
+        return "hello";
+    }
 
     @GetMapping(value = "/testAopMethod")
     public String testAopMethod(@NonNull String testCode) {
