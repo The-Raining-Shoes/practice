@@ -29,12 +29,13 @@ public class CurrentLimitInterceptor implements HandlerInterceptor {
     @Setter(onMethod_ = @Autowired)
     private RedisTemplate<Object, Object> redisTemplate;
 
+    private final SimpleDateFormat df = new SimpleDateFormat("yyyyMMddHHmmss");
+
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) {
         String querySql = "select * from t_url_limiter where url = ? ";
         TUrlLimiter tUrlLimiter = beanJdbcTemplate.queryForBean(TUrlLimiter.class, querySql, request.getRequestURI());
         if (CheckUtil.isNotBlank(tUrlLimiter)) {
-            SimpleDateFormat df = new SimpleDateFormat("yyyyMMddHHmmss");
             String format = df.format(new Date());
             RedisAtomicLong entityIdCounter = new RedisAtomicLong(request.getRequestURI() + format, Objects.requireNonNull(redisTemplate.getConnectionFactory()));
             entityIdCounter.expire(1, TimeUnit.SECONDS);
