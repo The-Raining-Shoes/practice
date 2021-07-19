@@ -4,6 +4,13 @@ import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.Semaphore;
 
+/**
+ * 该类有两个静态属性的队列A_QUEUE和B_QUEUE，假设n=5则表示A_QUEUE初始化n条数据，B_QUEUE初始化2*n条数据，B_QUEUE一定是A_QUEUE的2倍。
+ * 题目要求：
+ * 启动2个线程分别循环的从A_QUEUE和B_QUEUE拉取数据，然后组合成一行数据输出。
+ * 组合要求，用括号包裹队列中的字符串，从A_QUEUE中取1条数据，B_QUEUE中取2条数据，组合成一行输出，直到所有数据输出完为止。
+ * 要求取到满足组合条件后立刻输出数据,而不是所有数据拉取完了再输出数据。
+ */
 public class NineExam2020 {
 
     private static final Semaphore semaphore1 = new Semaphore(1);
