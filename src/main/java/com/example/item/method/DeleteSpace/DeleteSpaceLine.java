@@ -15,6 +15,16 @@ import java.io.IOException;
  */
 public class DeleteSpaceLine {
 
+    public static void main(String[] args) {
+        String scanfPath = "D:/WorkSpace-weixin/open-api/src/main/java";
+//        String scanfPath = "D:/WorkSpace-weixin/database-entity/src/main/java";
+//        String scanfPath = "D:/WorkSpace-weixin/manager-api/src/main/java";
+//        String scanfPath = "D:/WxWork-noMove/weixin-receive-web/src/main/java";
+//        String scanfPath = "D:/WorkSpace-weixin/manager-job/src/main/java";
+//        String scanfPath = "D:/WorkSpace-weixin/manager-webapp/src/pages";
+        scanfFile(scanfPath);
+    }
+
     public String dealFileContent(String filePath) {
         BufferedReader br = null;
         String line;
@@ -45,7 +55,6 @@ public class DeleteSpaceLine {
     //写回文件
     public void writeFile(String filePath, String content) {
         BufferedWriter bw = null;
-
         try {
             bw = new BufferedWriter(new FileWriter(filePath, true));
             bw.write(content);
@@ -83,16 +92,6 @@ public class DeleteSpaceLine {
 //            e.printStackTrace();
 //        }
 //    }
-
-    public static void main(String[] args) {
-//        String scanfPath = "D:/WorkSpace-weixin/open-api/src/main/java";
-//        String scanfPath = "D:/WorkSpace-weixin/database-entity/src/main/java";
-//        String scanfPath = "D:/WorkSpace-weixin/manager-api/src/main/java";
-//        String scanfPath = "D:/WxWork-noMove/weixin-receive-web/src/main/java";
-        String scanfPath = "D:/WorkSpace-weixin/manager-job/src/main/java";
-//        String scanfPath = "D:/WorkSpace-weixin/manager-webapp/src/pages";
-        scanfFile(scanfPath);
-    }
 
     static void scanfFile(String scanfPath) {
         String filePath1 = "D:/20210702.txt";

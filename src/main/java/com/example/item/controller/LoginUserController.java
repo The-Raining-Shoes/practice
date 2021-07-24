@@ -39,7 +39,7 @@ public class LoginUserController {
 
     @GetMapping(value = "/loginTest")
     public Result<LoginDTO> refreshSToken(@RequestParam String a, @RequestParam String b) {
-        System.out.println(a == b);
+        System.out.println(a.equals(b));
         LoginDTO loginDTO = new LoginDTO();
         loginDTO.setName("毛豪");
         loginDTO.setUserId(1);

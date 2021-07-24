@@ -1,17 +1,21 @@
 package com.example.item.service;
 
-import com.example.item.domain.annation.AnnationTest;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 @Service
 public class TestService {
 
-    @AnnationTest(testCode = "测试数据")
-    public void tests() {
-        System.out.println("切面测试");
-    }
-
+    @Cacheable(value = "TEST_CODE", key = "#testCode")
     public String testCache(String testCode) {
+        System.out.println(1);
         return testCode;
     }
+
+    @CacheEvict(value = "TEST_CODE", key = "1")
+    public String clearCache() {
+        return "缓存已清除";
+    }
+
 }
