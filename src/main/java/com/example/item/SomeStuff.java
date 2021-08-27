@@ -1,9 +1,15 @@
 package com.example.item;
 
+import com.dangdang.ddframe.job.api.ShardingContext;
+import com.dangdang.ddframe.job.api.simple.SimpleJob;
+import com.dangdang.ddframe.job.config.JobCoreConfiguration;
+import com.dangdang.ddframe.job.config.simple.SimpleJobConfiguration;
+import com.dangdang.ddframe.job.lite.api.JobScheduler;
+import com.dangdang.ddframe.job.lite.config.LiteJobConfiguration;
+import com.dangdang.ddframe.job.reg.base.CoordinatorRegistryCenter;
+import com.dangdang.ddframe.job.reg.zookeeper.ZookeeperConfiguration;
+import com.dangdang.ddframe.job.reg.zookeeper.ZookeeperRegistryCenter;
 import lombok.extern.slf4j.Slf4j;
-
-import java.util.concurrent.ArrayBlockingQueue;
-import java.util.concurrent.BlockingQueue;
 
 /**
  * 测试数据
@@ -12,24 +18,24 @@ import java.util.concurrent.BlockingQueue;
  * @date 2020年04月13日 9:18
  */
 @Slf4j
-public class SomeStuff {
+//@JobService(desc = "测试",cron = "0/3 * * * * ?")
+public class SomeStuff implements SimpleJob {
 
-    private static final int n = 5;//队列大小 A_QUEUE为n，B_QUEUE为2n
-    private static final BlockingQueue<String> A_QUEUE = new ArrayBlockingQueue<>(n);
-    private static final BlockingQueue<String> B_QUEUE = new ArrayBlockingQueue<>(2*n);
-    static {
-        for (int i = 0; i < n; i++) {
-            A_QUEUE.add("A-" + i);
-        }
-        for (int i = 0; i < 2 * n; i++) {
-            B_QUEUE.add("B-" + i);
-        }
+    @Override
+    public void execute(ShardingContext shardingContext) {
+        System.out.println(123);
     }
 
     public static void main(String[] args) {
-        System.out.println(A_QUEUE);
-        System.out.println(B_QUEUE);
-
+        ZookeeperConfiguration zookeeperConfiguration = new ZookeeperConfiguration("localhost:2181", "elsetic-job");
+        CoordinatorRegistryCenter coordinatorRegistryCenter = new ZookeeperRegistryCenter(zookeeperConfiguration);
+        coordinatorRegistryCenter.init();
+        //配置任务 每秒运行一次
+        JobCoreConfiguration jobCoreConfiguration =
+                JobCoreConfiguration.newBuilder("archive-job", "1 * * * * ? *", 10).build();
+        SimpleJobConfiguration simpleJobConfiguration = new SimpleJobConfiguration(jobCoreConfiguration, SomeStuff.class.getName());
+        //启动任务
+        new JobScheduler(coordinatorRegistryCenter, LiteJobConfiguration.newBuilder(simpleJobConfiguration).build()).init();
     }
 
 }

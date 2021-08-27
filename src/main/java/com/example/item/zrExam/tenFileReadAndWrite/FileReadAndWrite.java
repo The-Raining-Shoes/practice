@@ -15,7 +15,7 @@ import java.io.OutputStream;
  */
 public class FileReadAndWrite extends Thread {
 
-    private File file;
+    private final File file;
 
     public FileReadAndWrite(File file) {
         this.file = file;

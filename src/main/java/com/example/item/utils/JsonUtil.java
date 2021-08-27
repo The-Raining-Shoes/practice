@@ -23,7 +23,6 @@ public final class JsonUtil {
 
     private static Gson gson = new GsonBuilder().registerTypeAdapter(new TypeToken<Map<String, Object>>() {
     }.getType(), (JsonDeserializer<Map<String, Object>>) (json, typeOfT, context) -> {
-
         Map<String, Object> map = new HashMap<>();
         JsonObject jsonObject = json.getAsJsonObject();
         Set<Map.Entry<String, JsonElement>> entrySet = jsonObject.entrySet();
