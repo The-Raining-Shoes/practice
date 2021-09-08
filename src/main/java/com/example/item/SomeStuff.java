@@ -9,6 +9,7 @@ import com.dangdang.ddframe.job.lite.config.LiteJobConfiguration;
 import com.dangdang.ddframe.job.reg.base.CoordinatorRegistryCenter;
 import com.dangdang.ddframe.job.reg.zookeeper.ZookeeperConfiguration;
 import com.dangdang.ddframe.job.reg.zookeeper.ZookeeperRegistryCenter;
+import com.example.item.elasticJob.JobService;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -18,12 +19,15 @@ import lombok.extern.slf4j.Slf4j;
  * @date 2020年04月13日 9:18
  */
 @Slf4j
-//@JobService(desc = "测试",cron = "0/3 * * * * ?")
+@JobService(desc = "测试", cron = "0/3 * * * * ?")
 public class SomeStuff implements SimpleJob {
 
     @Override
     public void execute(ShardingContext shardingContext) {
-        System.out.println(123);
+        System.out.println("分片数量" + shardingContext.getShardingTotalCount()
+                + "当前分区" + shardingContext.getShardingItem()
+                + "当前分区名称" + shardingContext.getShardingParameter()
+                + "当前自定义参数" + shardingContext.getJobParameter() + "============SYSTEM=================");
     }
 
     public static void main(String[] args) {

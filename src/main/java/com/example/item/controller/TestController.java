@@ -1,9 +1,9 @@
 package com.example.item.controller;
 
 import com.alibaba.excel.EasyExcel;
+import com.example.item.InvocationHandler.TestCodeInterface;
 import com.example.item.domain.dto.StaffUploadMouldFileDTO;
 import com.example.item.domain.dto.TestDTO;
-import com.google.common.util.concurrent.RateLimiter;
 import lombok.NonNull;
 import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +19,6 @@ import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 @RestController
 @RequestMapping(value = "/TestController")
@@ -28,15 +27,13 @@ public class TestController {
     @Setter(onMethod_ = @Autowired)
     private RedisTemplate<Object, Object> redisTemplate;
 
-    private RateLimiter rateLimiter = RateLimiter.create(0.8);
+    @Setter(onMethod_ = @Autowired)
+    private TestCodeInterface testCodeInterface;
 
     @GetMapping(value = "/test")
     public String test() {
-        boolean b = rateLimiter.tryAcquire(0, TimeUnit.SECONDS);
-        if (!b) {
-            System.out.println("现在抢购的人数过多，请稍后再试");
-        }
-//        redisTemplate.keys("");
+        String code = testCodeInterface.sysCode("测试");
+        System.out.println(code);
         return "hello";
     }
 

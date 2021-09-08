@@ -1,4 +1,4 @@
-package com.example.item;
+package com.example.item.elasticJob;
 
 import com.dangdang.ddframe.job.executor.handler.ExecutorServiceHandler;
 import com.dangdang.ddframe.job.executor.handler.JobExceptionHandler;
