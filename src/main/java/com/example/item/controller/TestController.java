@@ -8,6 +8,8 @@ import lombok.NonNull;
 import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
@@ -30,8 +32,11 @@ public class TestController {
     @Setter(onMethod_ = @Autowired)
     private TestCodeInterface testCodeInterface;
 
+
     @GetMapping(value = "/test")
     public String test() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        System.out.println(authentication);
         String code = testCodeInterface.sysCode("测试");
         System.out.println(code);
         return "hello";

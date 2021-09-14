@@ -1,6 +1,7 @@
 package com.example.item.domain.dto;
 
 import com.example.item.exception.ErrorCode;
+import com.example.item.utils.JsonUtil;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -44,5 +45,9 @@ public class Result<T> implements Serializable {
         if (error.equals(ErrorCode.OK)) {
             this.success = true;
         }
+    }
+
+    public String json() {
+        return JsonUtil.toJson(this);
     }
 }
