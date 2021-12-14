@@ -4,4 +4,6 @@ public interface TestCodeInterface {
 
     String sysCode(String code);
 
+    String sysName(String name);
+
 }

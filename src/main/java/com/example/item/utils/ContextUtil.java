@@ -104,9 +104,9 @@ public class ContextUtil {
         return REQ_SERIAL.get();
     }
 
-    //public static ArrayList<String> getReqOperationTableNames() {
-    //    return REQ_OPERATION_TABLE_NAME.get();
-    //}
+    public static ArrayList<String> getReqOperationTableNames() {
+        return REQ_OPERATION_TABLE_NAME.get();
+    }
 
     public static String getReqOperationTableNameStr() {
         ArrayList<String> tableNames = REQ_OPERATION_TABLE_NAME.get();
@@ -146,8 +146,6 @@ public class ContextUtil {
         }
         return null;
     }
-
-
 
     @Data
     private static class CurrUserBean {

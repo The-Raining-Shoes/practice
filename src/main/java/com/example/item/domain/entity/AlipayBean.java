@@ -1,5 +1,6 @@
 package com.example.item.domain.entity;
 
+import com.example.item.domain.annation.DBField;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
@@ -18,4 +19,6 @@ public class AlipayBean {
     /*超时时间参数*/
     private String timeout_express = "10m";
     private String product_code = "FAST_INSTANT_TRADE_PAY";
+    private DBField test;
+
 }

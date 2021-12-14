@@ -3,6 +3,7 @@ package com.example.item.InvocationHandler;
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.lang.reflect.Parameter;
 
 public class ApiActuator implements InvocationHandler {
 
@@ -18,10 +19,14 @@ public class ApiActuator implements InvocationHandler {
 
     @Override
     public Object invoke(Object proxy, Method method, Object[] args) throws InvocationTargetException, IllegalAccessException {
-        Object invoke = method.invoke(object, args);
-        System.out.println(code);
-        System.out.println(password);
-        return invoke;
+        System.out.println(method.getDeclaringClass().getName());
+        System.out.println(method.getName());
+        Parameter[] p = method.getParameters();
+        for (Parameter parameter : p) {
+            System.out.println(parameter.getName());
+            System.out.println(parameter.getType());
+        }
+        return method.invoke(object, args);
     }
 
 //    @Override

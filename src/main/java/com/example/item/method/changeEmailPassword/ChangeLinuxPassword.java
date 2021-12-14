@@ -7,12 +7,46 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
-public class ChangeEmailPassword {
+/**
+ * 修改远程服务器密码
+ * Linux
+ */
+public class ChangeLinuxPassword {
+
     private Connection conn = null;
     private boolean hasError = false;
     private String ErrorMessage = "";
     private boolean isSuccessfully = false;
     private String SystemMessage = "";
+    //    public static String oldPassword = "GHdsdui8963%^$";
+    public static String oldPassword = "Mm199678,.";
+    public static String tempPassword = "QYWX,.13579";
+
+    public static void main(String[] args) {
+//        ChangeLinuxPassword cep = new ChangeLinuxPassword("136.6.5.45", 22, "cxyftoods2", oldPassword);
+        ChangeLinuxPassword cep = new ChangeLinuxPassword("139.155.181.217", 22, "root", oldPassword);
+        if (cep.isHasError()) {
+            System.out.println(cep.getErrorMessage());
+            return;
+        }
+        cep.setNewPassword(oldPassword, tempPassword);
+        if (cep.isHasError()) {
+            System.out.println(cep.getErrorMessage());
+            return;
+        }
+        if (cep.isSuccessfully) {
+            System.out.println(cep.getSystemMessage());
+        }
+        cep.setNewPassword(tempPassword, oldPassword);
+        if (cep.isHasError()) {
+            System.out.println(cep.getErrorMessage());
+            return;
+        }
+        if (cep.isSuccessfully) {
+            System.out.println(cep.getSystemMessage());
+        }
+
+    }
 
 
     public boolean isHasError() {
@@ -28,7 +62,7 @@ public class ChangeEmailPassword {
         this.ErrorMessage = msg;
     }
 
-    public ChangeEmailPassword(String host, Integer port, String username, String oldPassword) {
+    public ChangeLinuxPassword(String host, Integer port, String username, String oldPassword) {
         try {
             conn = new Connection(host, port);
             conn.connect();
@@ -44,7 +78,7 @@ public class ChangeEmailPassword {
         }
     }
 
-    public void setNewPassword(String newPassword) {
+    public void setNewPassword(String oldPassword, String newPassword) {
         if (hasError) {
             return;
         }
@@ -64,13 +98,15 @@ public class ChangeEmailPassword {
             if (length > 0) {
                 System.out.println("#1:" + new String(buffer, 0, length));
             }
-            String coldPassword = newPassword + "\n";
+            // 旧密码
+            String coldPassword = oldPassword + "\n";
             out.write(coldPassword.getBytes());
             length = err.read(buffer);
             if (length > 0) {
                 System.out.println("#2:" + new String(buffer, 0, length));
                 //(current) UNIX password:
             }
+            // 新密码一次
             String cNewPass = newPassword + "\n";
             out.write(cNewPass.getBytes());
             length = err.read(buffer);
@@ -84,6 +120,7 @@ public class ChangeEmailPassword {
                     return;
                 }
             }
+            // 新密码二次
             out.write(cNewPass.getBytes());
             length = err.read(buffer);
             if (length > 0) {
@@ -96,6 +133,7 @@ public class ChangeEmailPassword {
                     return;
                 }
             }
+            // 新密码三次
             out.write(cNewPass.getBytes());
             length = so.read(buffer);
             if (length > 0) {
@@ -109,22 +147,6 @@ public class ChangeEmailPassword {
             conn.close();
         } catch (IOException e) {
             e.printStackTrace(System.err);
-        }
-    }
-
-    public static void main(String[] args) {
-        ChangeEmailPassword cep = new ChangeEmailPassword("136.6.5.45", 22, "cxyftoods2", "GHdsdui8963%^$");
-        if (cep.isHasError()) {
-            System.out.println(cep.getErrorMessage());
-            return;
-        }
-        cep.setNewPassword("Qywx,.2020");
-        if (cep.isHasError()) {
-            System.out.println(cep.getErrorMessage());
-            return;
-        }
-        if (cep.isSuccessfully) {
-            System.out.println(cep.getSystemMessage());
         }
     }
 
