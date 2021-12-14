@@ -1,7 +1,6 @@
 package com.example.item.controller;
 
 import com.alibaba.excel.EasyExcel;
-import com.example.item.InvocationHandler.TestCodeInterface;
 import com.example.item.domain.dto.StaffUploadMouldFileDTO;
 import com.example.item.domain.dto.TestDTO;
 import lombok.NonNull;
@@ -26,19 +25,6 @@ public class TestController {
 
     @Setter(onMethod_ = @Autowired)
     private RedisTemplate<Object, Object> redisTemplate;
-
-    @Setter(onMethod_ = @Autowired)
-    private TestCodeInterface testCodeInterface;
-
-
-    @GetMapping(value = "/test")
-    public String test() {
-//        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-//        System.out.println(authentication);
-        String code = testCodeInterface.sysCode("测试");
-        String name = testCodeInterface.sysName("测试名称");
-        return code + name;
-    }
 
     @GetMapping(value = "/test3")
     public String test3() {
