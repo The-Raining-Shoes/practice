@@ -1,6 +1,6 @@
-package com.example.item.InvocationHandler.entity;
+package com.example.item.InvocationHandler;
 
-import com.example.item.InvocationHandler.annotation.RemoteFiled;
+import com.example.item.InvocationHandler.annotation.RemoteField;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -8,13 +8,13 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(callSuper = false)
 public class TestHttpMethodDTO {
 
-    @RemoteFiled(value = "test_code")
+    @RemoteField(value = "test_code")
     public String code;
 
-    @RemoteFiled(value = "mobile")
+    @RemoteField(value = "mobile")
     public String number;
 
-    @RemoteFiled(value = "type")
+    @RemoteField(value = "type")
     public String prodType;
 
     @Data

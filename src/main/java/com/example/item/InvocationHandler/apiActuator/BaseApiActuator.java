@@ -1,42 +1,39 @@
 package com.example.item.InvocationHandler.apiActuator;
 
+import com.example.item.InvocationHandler.annotation.RemoteMethod;
+import com.example.item.InvocationHandler.entity.ApiInfo;
+import lombok.RequiredArgsConstructor;
+import lombok.Setter;
+import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.web.client.RestTemplate;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
-import java.lang.reflect.Parameter;
-import java.util.Arrays;
 
+@RequiredArgsConstructor
 public class BaseApiActuator implements InvocationHandler {
 
-    private final ThreadLocal<Method> runMethod = new ThreadLocal<>();
+    public final RestTemplate restTemplate;
+    public final String name;
+    public final String password;
 
-//    @Setter(onMethod_ = @Autowired)
-//    private RedisTemplate<String, Object> redisTemplate;
-
-    public String name;
-    public String password;
-    public RestTemplate restTemplate;
-
-    public BaseApiActuator(RestTemplate restTemplate, String name, String password) {
-        this.name = name;
-        this.password = password;
-        this.restTemplate = restTemplate;
-    }
+    @Setter
+    public StringRedisTemplate stringRedisTemplate;
 
     @Override
     public Object invoke(Object proxy, Method method, Object[] args) {
-        runMethod.set(method);
         return this.execute(method, args);
     }
 
     public Object execute(Method method, Object[] args) {
-        System.out.println(method.getName());
-        Parameter[] parameters = method.getParameters();
-        System.out.println(Arrays.toString(args));
-        for (Parameter parameter : parameters) {
-            System.out.println(Arrays.toString(parameter.getClass().getDeclaredFields()));
+        if (method.getReturnType().getName().equals("void") || !method.isAnnotationPresent(RemoteMethod.class)) {
+            return null;
         }
+        ApiInfo apiInfo = this.getApiInfo(method);
+        return null;
+    }
+
+    private ApiInfo getApiInfo(Method method) {
         return null;
     }
 
