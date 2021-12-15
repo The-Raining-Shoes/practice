@@ -9,13 +9,18 @@ import java.lang.reflect.Parameter;
 @Data
 public class ApiInfo {
 
+    public String url;
+
     public String urlMethod;
 
     public RemoteMethod.HttpMethod httpMethod;
 
-    public Parameter[] parameters;
-
     public Method method;
 
+    public String methodName;
+
+    public Object returnType;
+
+    public Parameter[] parameters;
 
 }
