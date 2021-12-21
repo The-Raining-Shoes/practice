@@ -22,7 +22,7 @@ public class InvocationHandlerTest {
         try {
             TestHttpMethodDTO testHttpMethodDTO = new TestHttpMethodDTO();
             testHttpMethodDTO.setCode("CODE");
-            testHttpMethodDTO.setNumber("17782263622");
+            testHttpMethodDTO.setNumber("1778263622");
             testHttpMethodDTO.setProdType("1");
             Objects.requireNonNull(apiBean.getObject()).queryTestMethod(testHttpMethodDTO);
         } catch (Exception e) {

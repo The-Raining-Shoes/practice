@@ -6,10 +6,11 @@ import com.example.item.InvocationHandler.entity.ApiInfo;
 import com.example.item.zrExam.baiduIdCard.GsonUtils;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
+import org.apache.commons.lang3.exception.ExceptionUtils;
+import org.springframework.beans.BeanUtils;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.web.client.RestTemplate;
 
-import java.lang.reflect.Field;
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 import java.lang.reflect.Parameter;
@@ -39,10 +40,46 @@ public class BaseApiActuator implements InvocationHandler {
      * @return object
      */
     public Object execute(Method method, Object[] args) {
+        long startMillis = System.currentTimeMillis();
         // 获取方法参数
         ApiInfo apiInfo = this.getApiInfo(method);
-        Object o = convertRequest(apiInfo, args);
-        System.out.println(o);
+        Object requestObj = convertRequest(apiInfo, args);
+        Object executeObj = null;
+        Object rspObj = null;
+        try {
+            executeObj = executeMethod(apiInfo, restTemplate, requestObj);
+            rspObj = convertResponse(apiInfo, executeObj);
+            this.apiLog(startMillis, rspObj);
+            this.apiCache(rspObj);
+            return rspObj;
+        } catch (Exception e) {
+            Map<String, Object> rspMap = new HashMap<>(4);
+            rspMap.put("executeObj", executeObj);
+            rspMap.put("convertResponse", rspObj);
+            rspMap.put("rspObj", rspObj);
+            rspMap.put("exception", ExceptionUtils.getStackTrace(e));
+            this.apiLog(rspMap);
+            throw e;
+        }
+    }
+
+    private void apiCache(Object rspObj) {
+
+    }
+
+    private void apiLog(Object... object) {
+
+    }
+
+    /**
+     * 执行方法
+     *
+     * @param apiInfo      接口信息
+     * @param restTemplate 请求体
+     * @param o            请求体
+     * @return obj
+     */
+    private Object executeMethod(ApiInfo apiInfo, RestTemplate restTemplate, Object o) {
         return null;
     }
 
@@ -67,28 +104,35 @@ public class BaseApiActuator implements InvocationHandler {
     }
 
     public Object convertRequest(ApiInfo apiInfo, Object[] args) {
-        Object[] newArgs = new Object[args.length];
-        Class<?>[] parameterTypes = apiInfo.getMethod().getParameterTypes();
-        for (int i = 0; i < parameterTypes.length; i++) {
-            Field[] declaredFields = parameterTypes[i].getDeclaredFields();
-            Object arg = args[i];
-            for (Field declaredField : declaredFields) {
-                if (declaredField.isAnnotationPresent(RemoteField.class)) {
-                    arg = arg.toString().replace(declaredField.getName() + "=", declaredField.getDeclaredAnnotation(RemoteField.class).value() + "=");
-                }
-            }
-            newArgs[i] = arg;
-        }
         Parameter[] parameters = apiInfo.getMethod().getParameters();
         Map<String, Object> map = new HashMap<>();
         for (int i = 0; i < parameters.length; i++) {
-            map.put(parameters[i].getName(), newArgs[i]);
+            String[] newFiled = new String[parameters.length];
+            if (parameters.getClass().isAnnotationPresent(RemoteField.class)) {
+                newFiled[i] = parameters[i].getAnnotation(RemoteField.class).value();
+            } else {
+                newFiled[i] = parameters[i].getName();
+            }
+            map.put(newFiled[i], args[i]);
         }
         return GsonUtils.toJson(map);
     }
 
-    public Object convertResponse(Object o) {
+    public Object convertResponse(ApiInfo apiInfo, Object o) {
         return o;
+    }
+
+    private String getObjStr(Object obj) {
+        if (obj != null) {
+            if (BeanUtils.isSimpleProperty(obj.getClass())) {
+                return obj.toString();
+            } else if (obj instanceof Exception) {
+                return ExceptionUtils.getStackTrace((Throwable) obj);
+            } else {
+                return obj.toString();
+            }
+        }
+        return null;
     }
 
 }
