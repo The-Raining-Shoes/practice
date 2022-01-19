@@ -33,6 +33,7 @@ public class TestController {
 
     @GetMapping(value = "/testAopMethod")
     public String testAopMethod(@NonNull String testCode) {
+        System.out.println(testCode == "test");
         System.out.println(testCode);
 //        testService.tests();
         return "hello";
