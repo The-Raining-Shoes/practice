@@ -1,10 +1,13 @@
 package com.example.item.controller;
 
+import cn.hutool.core.io.FileUtil;
+import cn.hutool.core.util.ZipUtil;
 import com.alibaba.excel.EasyExcel;
 import com.example.item.domain.dto.StaffUploadMouldFileDTO;
 import com.example.item.domain.dto.TestDTO;
 import lombok.NonNull;
 import lombok.Setter;
+import org.apache.poi.util.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.web.bind.annotation.*;
@@ -13,7 +16,7 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
+import java.io.*;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
@@ -27,13 +30,37 @@ public class TestController {
     private RedisTemplate<Object, Object> redisTemplate;
 
     @GetMapping(value = "/test3")
-    public String test3() {
+    public String test3(HttpServletResponse response) {
+        File zip = null;
+        try {
+            zip = ZipUtil.zip(File.createTempFile("test-zip", ".zip"), false,
+                    FileUtil.file("http://136.6.142.53:30228/wx-work/open-api/file/download/669825/2f2fb26b164346469827903b815306bb"),
+                    FileUtil.file("d:/线上部2021年数据安全应急演练报告-网厅系统.doc"),
+                    FileUtil.file("d:/模板.xlsx"),
+                    FileUtil.file("d:/宽带渗透率模板2021.10月.xlsx")
+            );
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        if (zip != null) {
+            try (FileInputStream fileInputStream = new FileInputStream(zip)) {
+                response.reset();
+                response.setContentType("application/octet-stream;charset=utf-8");
+                response.setHeader("Content-Disposition",
+                        "attachment;filename=\"" + URLEncoder.encode("testZip.zip", "utf-8") + "\"");
+                OutputStream outputStream = response.getOutputStream();
+                outputStream.write(IOUtils.toByteArray(fileInputStream));
+                outputStream.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
         return "hello";
     }
 
     @GetMapping(value = "/testAopMethod")
     public String testAopMethod(@NonNull String testCode) {
-        System.out.println(testCode == "test");
+        System.out.println(testCode.equalsIgnoreCase("test"));
         System.out.println(testCode);
 //        testService.tests();
         return "hello";
