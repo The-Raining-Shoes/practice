@@ -28,6 +28,13 @@
 
 
     <dependencies>
+
+        <!-- 队列 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-amqp</artifactId>
+        </dependency>
+
         <!-- pdf转word -->
         <dependency>
             <groupId>org.apache.pdfbox</groupId>

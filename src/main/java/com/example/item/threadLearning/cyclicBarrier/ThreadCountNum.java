@@ -1,6 +1,8 @@
 package com.example.item.threadLearning.cyclicBarrier;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Random;
 import java.util.concurrent.BrokenBarrierException;
 import java.util.concurrent.CyclicBarrier;
@@ -29,6 +31,7 @@ public class ThreadCountNum {
         //多线程计算结果
         //定义长度为5的数组保存每个线程的计算结果
         final int[] results = new int[5];
+        List<String> list = new ArrayList<>();
         //定义一个大小为5的循环栅栏，传入的runnable是当barrier触发时执行
         CyclicBarrier barrier = new CyclicBarrier(5, () -> {
             long sums = 0;
@@ -36,6 +39,7 @@ public class ThreadCountNum {
                 sums += results[i];
             }
             System.out.println("多线程计算结果：" + sums);
+            System.out.println(list);
         });
         //子数组长度
         int length = 10000;
@@ -45,8 +49,9 @@ public class ThreadCountNum {
             int[] subNumbers = Arrays.copyOfRange(numbers, (i * length), ((i + 1) * length));
             System.out.println(Arrays.toString(subNumbers));
             //盛放计算结果
-            int finalI = i;
+            final int finalI = i;
             new Thread(() -> {
+                list.add(Thread.currentThread().getName());
                 for (int subNumber : subNumbers) {
                     results[finalI] += subNumber;
                 }
@@ -58,6 +63,11 @@ public class ThreadCountNum {
                 }
             }).start();
             System.out.println(barrier.getNumberWaiting());
+        }
+        try {
+            Thread.sleep(200);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
         System.out.println(barrier.getNumberWaiting());
     }
