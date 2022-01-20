@@ -2,10 +2,11 @@ package com.example.item;
 
 import lombok.Data;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.concurrent.BrokenBarrierException;
-import java.util.concurrent.CyclicBarrier;
+import java.util.Arrays;
+import java.util.concurrent.ArrayBlockingQueue;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
 
 /**
  * 测试数据
@@ -19,30 +20,34 @@ public class SomeStuff {
     private final String name = "test";
     private Integer code;
 
+    // 題目1 多线程计算数量
     public static void main(String[] args) {
-        List<String> list = new ArrayList<>();
-        CyclicBarrier cyclicBarrier = new CyclicBarrier(5, () -> {
-            for (String string : list) {
-                System.out.println(string);
-            }
-        });
-        for (int i = 0; i < 5; i++) {
-            try {
-                Thread.sleep(100);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-            final int count = i;
-            new Thread(() -> {
-                Thread.currentThread().setName("测试" + count);
-                list.add(Thread.currentThread().getName());
+        ThreadPoolExecutor executor = new ThreadPoolExecutor(5,10,60,
+                TimeUnit.MINUTES, new ArrayBlockingQueue<>(5), Executors.defaultThreadFactory(),new ThreadPoolExecutor.DiscardPolicy());
+        int[] numbers = new int[1600];
+        for(int i=0;i<1600;i++){
+            numbers[i] = i;
+        }
+        int length = 100;
+        for (int i = 0; i < 16; i++) {
+            // 定义子数组
+            int[] subNumbers = Arrays.copyOfRange(numbers, (i * length), ((i + 1) * length));
+            executor.execute(() -> {
+                for (int subNumber : subNumbers) {
+                    System.out.println(Thread.currentThread().getName()+"key"+subNumber);
+                }
                 try {
-                    cyclicBarrier.await();
-                } catch (InterruptedException | BrokenBarrierException e) {
+                    Thread.sleep(2000);
+                } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-            }).start();
-            System.out.println(cyclicBarrier.getNumberWaiting());
+            });
+        }
+        executor.shutdown();
+        while (true){
+            if(executor.isTerminated()){
+                break;
+            }
         }
     }
 
