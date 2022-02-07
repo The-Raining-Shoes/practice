@@ -99,11 +99,42 @@ public class BaseTest {
 ////        tOrderDetailRepository.saveAll(list);
 //    }
 
+    public static void main(String[] args) {
+        new Thread(() -> {
+            try {
+                System.out.println("thread1 is running");
+                synchronized (BaseTest.class) {
+                    System.out.println("thread is block obj2");
+                    Thread.sleep(100);
+                    synchronized (Object.class) {
+                        System.out.println("thread1 is over");
+                    }
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }).start();
+        new Thread(() -> {
+            try {
+                System.out.println("thread2 is running");
+                synchronized (Object.class) {
+                    System.out.println("thread is block obj1");
+                    Thread.sleep(100);
+                    synchronized (BaseTest.class) {
+                        System.out.println("thread2 is over");
+                    }
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }).start();
+    }
+
     @Test
     public void deadLock() {
         new Thread(() -> {
             try {
-                System.out.println("thread1 is running");
+                System.out.println("thread2 is running");
                 synchronized (BaseTest.class) {
                     System.out.println("thread is block obj1");
 

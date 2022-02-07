@@ -1,11 +1,8 @@
 package com.example.item;
 
-import lombok.Data;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.concurrent.BrokenBarrierException;
-import java.util.concurrent.CyclicBarrier;
+import java.util.concurrent.locks.Condition;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
 
 /**
  * 测试数据
@@ -13,37 +10,51 @@ import java.util.concurrent.CyclicBarrier;
  * @author MaoHao
  * @date 2020年04月13日 9:18
  */
-@Data
 public class SomeStuff {
+    private static Lock lock = new ReentrantLock();
+    static Condition condition1 = lock.newCondition();
+    static Condition condition2 = lock.newCondition();
 
-    private final String name = "test";
-    private Integer code;
+    public static void main(String[] arg) {
+        new Thread(new MyThread1(), "t1").start();
+        new Thread(new MyThread2(), "t2").start();
+    }
 
-    public static void main(String[] args) {
-        List<String> list = new ArrayList<>();
-        CyclicBarrier cyclicBarrier = new CyclicBarrier(5, () -> {
-            for (String string : list) {
-                System.out.println(string);
-            }
-        });
-        for (int i = 0; i < 5; i++) {
+    static class MyThread1 implements Runnable {
+        public void run() {
+            lock.lock();
             try {
-                Thread.sleep(100);
+                condition2.signal();
+                condition1.await();
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            final int count = i;
-            new Thread(() -> {
-                Thread.currentThread().setName("测试" + count);
-                list.add(Thread.currentThread().getName());
-                try {
-                    cyclicBarrier.await();
-                } catch (InterruptedException | BrokenBarrierException e) {
-                    e.printStackTrace();
-                }
-            }).start();
-            System.out.println(cyclicBarrier.getNumberWaiting());
+            try {
+                for (int i = 0; i < 5; i++)
+                    System.out.println(Thread.currentThread().getName() + ":" + i);
+            } finally {
+                lock.unlock();
+            }
+        }
+    }
+
+    static class MyThread2 implements Runnable {
+        public void run() {
+            lock.lock();
+            try {
+                condition1.await();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            try {
+                for (int i = 0; i < 5; i++)
+                    System.out.println(Thread.currentThread().getName() + ":" + i);
+            } finally {
+                condition2.signal();
+                lock.unlock();
+            }
         }
     }
 
 }
+

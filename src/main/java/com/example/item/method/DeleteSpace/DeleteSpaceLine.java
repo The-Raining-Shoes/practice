@@ -16,12 +16,12 @@ import java.io.IOException;
 public class DeleteSpaceLine {
 
     public static void main(String[] args) {
-        String scanfPath = "D:/WorkSpace-weixin/open-api/src/main/java";
-//        String scanfPath = "D:/WorkSpace-weixin/database-entity/src/main/java";
-//        String scanfPath = "D:/WorkSpace-weixin/manager-api/src/main/java";
-//        String scanfPath = "D:/WxWork-noMove/weixin-receive-web/src/main/java";
-//        String scanfPath = "D:/WorkSpace-weixin/manager-job/src/main/java";
-//        String scanfPath = "D:/WorkSpace-weixin/manager-webapp/src/pages";
+//        String scanfPath = "D:/weixin-work-new/manager-api/src/main/java";
+//        String scanfPath = "D:/weixin-work-new/database-entity/src/main/java";
+//        String scanfPath = "D:/weixin-work-new/open-api/src/main/java";
+//        String scanfPath = "D:/weixin-work-new/manager-webapp/src/pages";
+//        String scanfPath = "D:/weixin-work-new-noMove/weixin-receive-web/src/main/java";
+        String scanfPath = "D:/weixin-work-new/manager-job/src/main/java";
         scanfFile(scanfPath);
     }
 
@@ -94,7 +94,7 @@ public class DeleteSpaceLine {
 //    }
 
     static void scanfFile(String scanfPath) {
-        String filePath1 = "D:/20210702.txt";
+        String filePath1 = "D:/20220125.txt";
         // 递归循环取所有文件
         File file = new File(scanfPath);
         if (file.exists()) {
