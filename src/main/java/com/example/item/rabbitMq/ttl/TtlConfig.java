@@ -22,6 +22,8 @@ public class TtlConfig {
     public Queue directTtlQueue() {
         Map<String, Object> args = new HashMap<>();
         args.put("x-message-ttl", 5000);
+        args.put("x-dead-letter-exchange","dead_direct_exchange");
+        args.put("x-dead-letter-routing-key","dead");
         return new Queue("direct_ttl_queue", true, false, false, args);
     }
 
