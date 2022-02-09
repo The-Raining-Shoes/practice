@@ -8,6 +8,9 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
+/**
+ * 单独信息设置过期时间
+ */
 public class MessageTtlConfig {
 
     @Bean
