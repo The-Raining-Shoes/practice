@@ -1,12 +1,8 @@
 package com.example.item;
 
-import lombok.Data;
-
-import java.util.Arrays;
-import java.util.concurrent.ArrayBlockingQueue;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ThreadPoolExecutor;
-import java.util.concurrent.TimeUnit;
+import java.util.concurrent.*;
+import java.util.concurrent.locks.Condition;
+import java.util.concurrent.locks.ReentrantLock;
 
 /**
  * 测试数据
@@ -14,57 +10,170 @@ import java.util.concurrent.TimeUnit;
  * @author MaoHao
  * @date 2020年04月13日 9:18
  */
-@Data
 public class SomeStuff {
 
-    private final String name = "test";
-    private Integer code;
+    static int i = 1;
+    static int baoZi = 5;
 
-    // 題目1 多线程计算数量
     public static void main(String[] args) {
-        ThreadPoolExecutor executor = new ThreadPoolExecutor(5, 10, 60,
-                TimeUnit.MINUTES, new ArrayBlockingQueue<>(6), Executors.defaultThreadFactory(), new ThreadPoolExecutor.DiscardPolicy());
-        int[] numbers = new int[1600];
-        long sums1 = 0;
-        for (int i = 0; i < 1600; i++) {
-            numbers[i] = i;
-            sums1 += i;
-        }
-        System.out.println("单线程计算结果为：" + sums1);
-        int length = 100;
-        int[] countNumbers = new int[16];
-        for (int i = 0; i < 16; i++) {
-            final int count = i;
-            // 定义子数组
-            int[] subNumbers = Arrays.copyOfRange(numbers, (i * length), ((i + 1) * length));
-            executor.execute(() -> {
-                for (int subNumber : subNumbers) {
-                    countNumbers[count] += subNumber;
-                    System.out.println(Thread.currentThread().getName() + "key" + subNumber);
+        ReentrantLock lock = new ReentrantLock();
+        Condition condition1 = lock.newCondition();
+        Condition condition2 = lock.newCondition();
+        Condition condition3 = lock.newCondition();
+        Condition condition4 = lock.newCondition();
+        Condition condition5 = lock.newCondition();
+        CountDownLatch countDownLatch = new CountDownLatch(5);
+        ThreadPoolExecutor threadPoolExecutor = new ThreadPoolExecutor(5, 5, 5, TimeUnit.HOURS,
+                new ArrayBlockingQueue<>(5), Executors.defaultThreadFactory(), new ThreadPoolExecutor.CallerRunsPolicy());
+        Runnable run1 = () -> {
+            lock.lock();
+            System.out.println("线程1拿到锁");
+            while (true) {
+                System.out.println(i);
+                if (i != 1) {
+                    try {
+                        System.out.println("线程1准备休眠了。。。");
+                        condition1.await();
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
                 }
+                i = 2;
+                System.out.println("线程1在吃包子");
                 try {
-                    Thread.sleep(2000);
+                    Thread.sleep(3000);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-            });
-        }
+                baoZi--;
+                System.out.println("还剩下" + baoZi + "个包子");
+                countDownLatch.countDown();
+                condition2.signal();
+            }
+        };
+        Runnable run2 = () -> {
+            lock.lock();
+            System.out.println("线程2拿到锁");
+            while (true) {
+                System.out.println(i);
+                if (i != 2) {
+                    try {
+                        System.out.println("线程2准备休眠了。。。");
+                        condition2.await();
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+                i = 3;
+                System.out.println("线程2在吃包子");
+                try {
+                    Thread.sleep(3000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                baoZi--;
+                System.out.println("还剩下" + baoZi + "个包子");
+                countDownLatch.countDown();
+                condition3.signal();
+            }
+        };
+        Runnable run3 = () -> {
+            lock.lock();
+            System.out.println("线程3拿到锁");
+            while (true) {
+                System.out.println(i);
+                if (i != 3) {
+                    try {
+                        System.out.println("线程3准备休眠了。。。");
+                        condition3.await();
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+                // 指定下一个吃包子的人
+                i = 4;
+                System.out.println("线程3在吃包子");
+                try {
+                    Thread.sleep(3000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                baoZi--;
+                System.out.println("还剩下" + baoZi + "个包子");
+                countDownLatch.countDown();
+                condition4.signal();
+            }
+        };
+        Runnable run4 = () -> {
+            lock.lock();
+            System.out.println("线程4拿到锁");
+            while (true) {
+                System.out.println(i);
+                if (i != 4) {
+                    try {
+                        System.out.println("线程4准备休眠了。。。");
+                        condition4.await();
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+                // 指定下一个吃包子的人
+                i = 5;
+                System.out.println("线程4在吃包子");
+                try {
+                    Thread.sleep(3000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                baoZi--;
+                System.out.println("还剩下" + baoZi + "个包子");
+                countDownLatch.countDown();
+                condition5.signal();
+            }
+        };
+        Runnable run5 = () -> {
+            lock.lock();
+            System.out.println("线程5拿到锁");
+            while (true) {
+                System.out.println(i);
+                if (i != 5) {
+                    try {
+                        System.out.println("线程5准备休眠了。。。");
+                        condition5.await();
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+                // 指定下一个吃包子的人
+                i = 1;
+                System.out.println("线程5正在吃包子");
+                try {
+                    Thread.sleep(3000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                baoZi--;
+                System.out.println("还剩下" + baoZi + "个包子");
+                countDownLatch.countDown();
+//                condition1.signal();
+            }
+        };
+        System.out.println("5个包子5个人吃");
+        System.out.println("预备开始！！！");
+        threadPoolExecutor.execute(run1);
+        threadPoolExecutor.execute(run2);
+        threadPoolExecutor.execute(run3);
+        threadPoolExecutor.execute(run4);
+        threadPoolExecutor.execute(run5);
         try {
-            Thread.sleep(3000);
-        } catch (InterruptedException e) {
+            countDownLatch.await();
+            System.out.println("===========");
+            threadPoolExecutor.shutdownNow();
+        } catch (Exception e) {
+            // TODO Auto-generated catch block
             e.printStackTrace();
         }
-        long sums = 0;
-        for (int i = 0; i < 16; i++) {
-            sums += countNumbers[i];
-        }
-        System.out.println("多线程计算结果为" + sums);
-        executor.shutdown();
-        while (true) {
-            if (executor.isTerminated()) {
-                break;
-            }
-        }
+        System.err.println("收工。。。");
     }
 
 }
