@@ -29,6 +29,12 @@
 
     <dependencies>
 
+        <dependency>
+            <groupId>redis.clients</groupId>
+            <artifactId>jedis</artifactId>
+            <version>3.2.0</version>
+        </dependency>
+
         <!-- 队列 -->
         <dependency>
             <groupId>org.springframework.boot</groupId>

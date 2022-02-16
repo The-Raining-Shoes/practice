@@ -19,7 +19,7 @@ public class FunoutMqConfig {
     // 定义队列
     @Bean
     public Queue smsQueue() {
-        return new Queue("spring_sms_queue");
+        return new Queue("spring_sms_queue",true,false,false);
     }
 
     @Bean

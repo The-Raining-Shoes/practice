@@ -15,7 +15,7 @@ public class TtlConfig {
 
     @Bean
     public DirectExchange ttlDirectExchange() {
-        return new DirectExchange("ttl_direct_exchange");
+        return new DirectExchange("ttl_direct_exchange",true,false,null);
     }
 
     @Bean

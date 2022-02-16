@@ -34,6 +34,7 @@ public class SomeStuff {
                     try {
                         System.out.println("线程1准备休眠了。。。");
                         condition1.await();
+                        break;
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
@@ -60,6 +61,7 @@ public class SomeStuff {
                     try {
                         System.out.println("线程2准备休眠了。。。");
                         condition2.await();
+                        break;
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
@@ -86,6 +88,7 @@ public class SomeStuff {
                     try {
                         System.out.println("线程3准备休眠了。。。");
                         condition3.await();
+                        break;
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
@@ -113,6 +116,7 @@ public class SomeStuff {
                     try {
                         System.out.println("线程4准备休眠了。。。");
                         condition4.await();
+                        break;
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
@@ -140,6 +144,7 @@ public class SomeStuff {
                     try {
                         System.out.println("线程5准备休眠了。。。");
                         condition5.await();
+                        break;
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
