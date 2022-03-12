@@ -12,4 +12,9 @@ import java.util.stream.Stream;
  */
 public class StaticList {
     static List<Integer> getList = Stream.of(1, 3, 3, 5, 1, 7, 8, 2).collect(Collectors.toList());
+
+    public static void main(String[] args) {
+        List<Integer> collect = getList.stream().map(a -> a + 1).collect(Collectors.toList());
+        System.out.println(collect);
+    }
 }

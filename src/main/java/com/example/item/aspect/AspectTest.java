@@ -15,7 +15,7 @@ import java.lang.reflect.Method;
 @Aspect
 public class AspectTest {
 
-    @Pointcut("@annotation(com.example.item.domain.annation.AnnationTest)")
+    @Pointcut( value=" @annotation(com.example.item.domain.annation.AnnationTest)")
     public void aopTest() {
     }
 

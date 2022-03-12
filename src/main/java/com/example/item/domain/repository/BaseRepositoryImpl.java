@@ -184,53 +184,53 @@
 //     * @param timeout  超时时间
 //     * @return List
 //     */
-////    public List<T> batchSave(List<T> entities, int timeout) {
-////        if (entities.size() <= ResConstants.DB_BATCH_UPDATE_LIMIT) {
-////            return saveAll(entities);
-////        }
-////        PlatformTransactionManager transactionManager = SpringUtil.getBean(PlatformTransactionManager.class);
-////        ThreadPoolTaskExecutor es = SpringUtil.getBean(ThreadPoolTaskExecutor.class);
-////        @SuppressWarnings("unchecked")
-////        List<T> result = Collections.synchronizedList(new ArrayList());
-////        CountDownLatch downLatch = BatchUpdateAspect.getDownLatch();
-////        AtomicBoolean hasError = BatchUpdateAspect.getError();
-////        // 拆分后数据
-////        List<List<T>> subList = JdbcUtils.subList(entities);
-////        // 线程运行结果集合
-////        List<BatchUpdateRunnable> runList = new ArrayList<>();
-////        // 多线程结束标志
-////        CountDownLatch doneLatch = new CountDownLatch(subList.size());
-////        // 提交到线程池
-////        subList.forEach(ls -> {
-////            BatchUpdateRunnable callable =
-////                new BatchUpdateRunnable(transactionManager, doneLatch, downLatch, timeout, hasError, () -> {
-////                    for (T entity : ls) {
-////                        result.add(save(entity));
-////                    }
-////                    return null;
-////                });
-////            es.execute(callable);
-////            runList.add(callable);
-////        });
-////        try {
-////            boolean awaitStatus = doneLatch.await(timeout, TimeUnit.SECONDS);
-////            if (!awaitStatus) {
-////                hasError.set(true);
-////                log.error("等待执行超时，回滚事物。");
-////                throw new BssRuntimeException(ErrorCode.BSS_DEAL_ERROR, "等待执行超时");
-////            }
-////        } catch (InterruptedException e) {
-////            hasError.set(true);
-////            log.error("等待超时", e);
-////            throw new BssRuntimeException(ErrorCode.BSS_DEAL_ERROR, "数据更新异常");
-////        }
-////        runList.forEach((callable) -> {
-////            if (callable.getResult() instanceof Exception) {
-////                throw new RuntimeException((Exception) callable.getResult());
-////            }
-////        });
-////        return result;
-////    }
+//    public List<T> batchSave(List<T> entities, int timeout) {
+//        if (entities.size() <= ResConstants.DB_BATCH_UPDATE_LIMIT) {
+//            return saveAll(entities);
+//        }
+//        PlatformTransactionManager transactionManager = SpringUtil.getBean(PlatformTransactionManager.class);
+//        ThreadPoolTaskExecutor es = SpringUtil.getBean(ThreadPoolTaskExecutor.class);
+//        @SuppressWarnings("unchecked")
+//        List<T> result = Collections.synchronizedList(new ArrayList());
+//        CountDownLatch downLatch = BatchUpdateAspect.getDownLatch();
+//        AtomicBoolean hasError = BatchUpdateAspect.getError();
+//        // 拆分后数据
+//        List<List<T>> subList = JdbcUtils.subList(entities);
+//        // 线程运行结果集合
+//        List<BatchUpdateRunnable> runList = new ArrayList<>();
+//        // 多线程结束标志
+//        CountDownLatch doneLatch = new CountDownLatch(subList.size());
+//        // 提交到线程池
+//        subList.forEach(ls -> {
+//            BatchUpdateRunnable callable =
+//                new BatchUpdateRunnable(transactionManager, doneLatch, downLatch, timeout, hasError, () -> {
+//                    for (T entity : ls) {
+//                        result.add(save(entity));
+//                    }
+//                    return null;
+//                });
+//            es.execute(callable);
+//            runList.add(callable);
+//        });
+//        try {
+//            boolean awaitStatus = doneLatch.await(timeout, TimeUnit.SECONDS);
+//            if (!awaitStatus) {
+//                hasError.set(true);
+//                log.error("等待执行超时，回滚事物。");
+//                throw new BssRuntimeException(ErrorCode.BSS_DEAL_ERROR, "等待执行超时");
+//            }
+//        } catch (InterruptedException e) {
+//            hasError.set(true);
+//            log.error("等待超时", e);
+//            throw new BssRuntimeException(ErrorCode.BSS_DEAL_ERROR, "数据更新异常");
+//        }
+//        runList.forEach((callable) -> {
+//            if (callable.getResult() instanceof Exception) {
+//                throw new RuntimeException((Exception) callable.getResult());
+//            }
+//        });
+//        return result;
+//    }
 //
 //
 //}
