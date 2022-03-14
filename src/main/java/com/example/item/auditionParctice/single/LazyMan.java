@@ -1,7 +1,7 @@
 package com.example.item.auditionParctice.single;
 
 /**
- * 单例模式是可以用枚举来破坏的
+ * 懒汉式：线程不安全，一般使用双重检测锁模式 DCL懒汉式
  */
 public class LazyMan {
 
@@ -22,12 +22,15 @@ public class LazyMan {
         if (lazyMan == null) {
             synchronized (LazyMan.class) {
                 if (lazyMan == null) {
-                    lazyMan = new LazyMan(); // 不是一个原子性操作
+                    lazyMan = new LazyMan(); // 不是一个原子性操作 会执行下面的操作
                     /**
                      * 1.分配内存空间
                      * 2.执行构造方法，初始化对象
                      * 3.把这个对象指向这个空间
+                     * 会发生指令重排的现象
+                     * 如A线程指令重排成了132，然后B线程进来发现对象不为空，但是此时对象并没有被初始化，线程B就取到了一个未初始化的对象，所以一般要用volatile保证指令不被重排
                      */
+
                 }
             }
         }

@@ -1,6 +1,7 @@
 package com.example.item;
 
-import java.util.stream.LongStream;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 
 /**
  * 测试数据
@@ -10,13 +11,11 @@ import java.util.stream.LongStream;
  */
 public class SomeStuff {
 
-    public static void main(String[] args) {
-        long l = System.currentTimeMillis();
-        // 并发流处理计算数据
-        long reduce = LongStream.range(0L, 10_000_001L).parallel().reduce(0, Long::sum);
-        System.out.println(reduce);
-        System.out.println(System.currentTimeMillis() - l);
+    public static void main(String[] args) throws UnknownHostException {
+        InetAddress inetAddress = InetAddress.getByName("127.0.0.1");
+        System.out.println(inetAddress);
+        InetAddress iNetAddress2 = InetAddress.getByName("www.baidu.com");
+        System.out.println(iNetAddress2);
     }
-
 
 }

@@ -2,13 +2,13 @@ package com.example.item;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.cache.annotation.EnableCaching;
 
-
-@SpringBootApplication(exclude = {DataSourceAutoConfiguration.class})
+@SpringBootApplication()
+//@SpringBootApplication(exclude = {DataSourceAutoConfiguration.class})
 @EnableCaching
-//可以用自建JPA源
+//@MapperScan(basePackages = {"com.example.item.domain.mapper"}) // 扫描我们自定义文件目录下的文件
+//可以用自建的JPA源码
 //@EnableJpaRepositories(repositoryFactoryBeanClass = BaseRepositoryFactoryBean.class)
 public class ItemApplication {
 

@@ -5,25 +5,27 @@ package com.example.item.auditionParctice.single;
  */
 public enum EnumSingle {
 
-    test("sad","dsa");
+    test("test", "test");
 
-    EnumSingle(String a, String b){
-        this.code = a;
-        this.reason = b;
-    }
-
-    public static EnumSingle getInstance(){
+    public static EnumSingle getInstance() {
         return test;
     }
-    private String code;
-    private String reason;
 
-    public String getCode(){
-        return code;
+    private final String code;
+    private final String status;
+
+    EnumSingle(String code, String status) {
+        this.code = code;
+        this.status = status;
     }
 
-    public String getReason(){
-        return reason;
+    public String getCode() {
+        return this.code;
     }
+
+    public String getStatus() {
+        return status;
+    }
+
 
 }
