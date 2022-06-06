@@ -1,25 +1,14 @@
 package com.example.item;
 
-import com.example.item.queue.Sender;
 import com.github.benmanes.caffeine.cache.Cache;
 import com.github.benmanes.caffeine.cache.Caffeine;
-import lombok.Setter;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.concurrent.TimeUnit;
 
 @SpringBootTest
 public class BaseTest {
-
-    @Setter(onMethod_ = @Autowired)
-    private Sender sender;
-
-    @Test
-    public void test() {
-        sender.sendTemplate();
-    }
 
     private final Cache<String, String> autoCache = Caffeine.newBuilder()
             // 设置最后一次写入或访问后经过固定时间过期

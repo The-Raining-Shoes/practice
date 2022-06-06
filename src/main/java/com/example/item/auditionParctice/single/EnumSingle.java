@@ -5,6 +5,7 @@ package com.example.item.auditionParctice.single;
  */
 public enum EnumSingle {
 
+    //
     test("test", "test");
 
     public static EnumSingle getInstance() {
