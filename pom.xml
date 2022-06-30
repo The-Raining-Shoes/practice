@@ -29,6 +29,11 @@
 
     <dependencies>
         <dependency>
+            <groupId>org.rainy.group</groupId>
+            <artifactId>mySpire</artifactId>
+            <version>1.0.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
             <groupId>redis.clients</groupId>
             <artifactId>jedis</artifactId>
             <version>3.2.0</version>
@@ -321,9 +326,9 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
-<!--                <configuration>-->
-<!--                    <skip>true</skip>-->
-<!--                </configuration>-->
+                <!--                <configuration>-->
+                <!--                    <skip>true</skip>-->
+                <!--                </configuration>-->
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -336,18 +341,23 @@
             </plugin>
         </plugins>
     </build>
-<!--    <distributionManagement>-->
-<!--        <repository>-->
-<!--            <id>rainy_hosted</id>-->
-<!--            <name>rainy_hosted</name>-->
-<!--            <url>http://139.155.181.217:8081/repository/rainy_hosted/</url>-->
-<!--        </repository>-->
-<!--    </distributionManagement>-->
+    <distributionManagement>
+        <repository>
+            <id>rainy_hosted</id>
+            <name>rainy_hosted</name>
+            <url>http://139.155.181.217:8081/repository/rainy_hosted/</url>
+        </repository>
+    </distributionManagement>
     <repositories>
         <repository>
             <id>aliyun</id>
             <name>aliyun</name>
             <url>http://maven.aliyun.com/nexus/content/groups/public</url>
+        </repository>
+        <repository>
+            <id>rainy_group</id>
+            <name>rainy_group</name>
+            <url>http://139.155.181.217:8081/repository/rainy_group</url>
         </repository>
     </repositories>
 

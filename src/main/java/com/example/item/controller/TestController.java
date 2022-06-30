@@ -34,10 +34,8 @@ public class TestController {
         File zip = null;
         try {
             zip = ZipUtil.zip(File.createTempFile("test-zip", ".zip"), false,
-                    FileUtil.file("http://136.6.142.53:30228/wx-work/open-api/file/download/669825/2f2fb26b164346469827903b815306bb"),
                     FileUtil.file("d:/线上部2021年数据安全应急演练报告-网厅系统.doc"),
-                    FileUtil.file("d:/模板.xlsx"),
-                    FileUtil.file("d:/宽带渗透率模板2021.10月.xlsx")
+                    FileUtil.file("d:/模板.xlsx")
             );
         } catch (IOException e) {
             e.printStackTrace();
@@ -60,9 +58,8 @@ public class TestController {
 
     @GetMapping(value = "/testAopMethod")
     public String testAopMethod(@NonNull String testCode) {
-        System.out.println(testCode.equalsIgnoreCase("test"));
+        System.out.println("test".equalsIgnoreCase(testCode));
         System.out.println(testCode);
-//        testService.tests();
         return "hello";
     }
 

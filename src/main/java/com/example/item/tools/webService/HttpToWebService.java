@@ -22,7 +22,7 @@ public class HttpToWebService {
 
     public static void main(String[] args) throws IOException {
         //第一步：创建服务地址，不是WSDL地址
-        URL url = new URL("http://136.5.8.30:7788/services/RatableResource");
+        URL url = new URL("");
         //第二步：打开一个通向服务地址的连接
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
         //第三步：设置参数

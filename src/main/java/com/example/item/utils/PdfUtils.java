@@ -76,8 +76,15 @@ public class PdfUtils {
      * @param colspan             所占列数
      * @param border              传0时不显示网格
      */
-    public static void addCellToTable(PdfPTable table, String content, Font font, Integer horizontalAlignment, Integer verticalAlignment, Float fixedHeight, Integer colspan, Integer border) {
-        PdfPCell cell = new PdfPCell(new Phrase(content, font));
+    public static void addCellToTable(PdfPTable table, Object content, Font font, Integer horizontalAlignment, Integer verticalAlignment, Float fixedHeight, Integer colspan, Integer border) {
+        PdfPCell cell;
+        if (content instanceof String) {
+            cell = new PdfPCell(new Phrase(content.toString(), font));
+        } else if (content instanceof PdfPTable) {
+            cell = new PdfPCell((PdfPTable) content);
+        } else {
+            throw new RuntimeException("不支持的添加类型");
+        }
         if (fixedHeight != null) {
             cell.setFixedHeight(fixedHeight);
         }

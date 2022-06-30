@@ -101,7 +101,7 @@ public class SendMail {
             fs = new POIFSFileSystem();
             EncryptionInfo info = new EncryptionInfo(EncryptionMode.standard);
             Encryptor enc = info.getEncryptor();
-            enc.confirmPassword("qywx,.2020");//打开excel 密码
+            enc.confirmPassword("test,.2020");//打开excel 密码
             // 然后把字节输入到输入流，然后输入到OPC包里面
             opc = OPCPackage.open(workbooks);
             os = enc.getDataStream(fs);

@@ -1,17 +1,15 @@
 package com.example.item;
 
-import com.example.item.utils.PdfUtils;
-import com.itextpdf.text.Document;
-import com.itextpdf.text.DocumentException;
-import com.itextpdf.text.Element;
-import com.itextpdf.text.Paragraph;
-import com.itextpdf.text.pdf.PdfPCell;
-import com.itextpdf.text.pdf.PdfPTable;
-import com.itextpdf.text.pdf.PdfWriter;
+import com.spire.xls.FileFormat;
+import com.spire.xls.InsertOptionsType;
+import com.spire.xls.Workbook;
+import com.spire.xls.Worksheet;
+import org.springframework.core.io.ClassPathResource;
 
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.OutputStream;
+import java.io.File;
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * 测试数据
@@ -22,53 +20,54 @@ import java.io.OutputStream;
 public class SomeStuff {
 
     public static void main(String[] args) {
+        Map<String, String> map = new HashMap<>(16);
+        map.put("#test#", "啊啊啊啊啊啊啊啊");
+        map.put("#tests#", "谢谢了喜啊啊啊");
+        Workbook wb = new Workbook();
         try {
-            Document document = PdfUtils.newDefaultDocument();
-            OutputStream outputStream = new FileOutputStream("D:\\qwer.pdf");
-            PdfWriter.getInstance(document, outputStream);
-            document.open();
-            // 2. 打开document
-            PdfPTable titleTable1 = PdfUtils.newPdfTable();
-            PdfUtils.addCellToTable(titleTable1, "1231312313132131", PdfUtils.DEFAULT_TITLE_FONT, PdfPCell.ALIGN_CENTER, PdfPCell.ALIGN_MIDDLE, 50f, 14, null);
-            PdfPCell nCell;
-            PdfPTable nestedTable = new PdfPTable(2);
-            PdfPTable nestedTable1 = new PdfPTable(2);
-            PdfPCell ncCell;
-            ncCell = new PdfPCell(new Paragraph("123"));
-            ncCell.setHorizontalAlignment(Element.ALIGN_CENTER);
-            ncCell.setVerticalAlignment(Element.ALIGN_MIDDLE);
-            ncCell.setFixedHeight(25f);
-            nestedTable1.addCell(ncCell);
-            ncCell = new PdfPCell(new Paragraph("321"));
-            ncCell.setHorizontalAlignment(Element.ALIGN_CENTER);
-            ncCell.setVerticalAlignment(Element.ALIGN_MIDDLE);
-            ncCell.setFixedHeight(25f);
-            nestedTable1.addCell(ncCell);
-            nCell = new PdfPCell(nestedTable1);
-            nCell.setHorizontalAlignment(Element.ALIGN_CENTER);
-            nCell.setVerticalAlignment(Element.ALIGN_MIDDLE);
-            nCell.setFixedHeight(25f);
-            nCell.setColspan(2);
-            nestedTable.addCell(nCell);
-            nCell = new PdfPCell(new Paragraph("3"));
-            nCell.setHorizontalAlignment(Element.ALIGN_CENTER);
-            nCell.setVerticalAlignment(Element.ALIGN_MIDDLE);
-            nCell.setFixedHeight(25f);
-            nestedTable.addCell(nCell);
-            nCell = new PdfPCell(new Paragraph("4"));
-            nCell.setHorizontalAlignment(Element.ALIGN_CENTER);
-            nCell.setVerticalAlignment(Element.ALIGN_MIDDLE);
-            nCell.setFixedHeight(25f);
-            nestedTable.addCell(nCell);
-            PdfPCell cell = new PdfPCell(nestedTable);
-            cell.setColspan(10);
-            cell.setPadding(0);
-            titleTable1.addCell(cell);
-            document.add(titleTable1);
-            // 4. 关闭 (如果未关闭则会生成无效的pdf文件)
-            document.close();
-        } catch (DocumentException | FileNotFoundException ex) {
-            ex.printStackTrace();
+            ClassPathResource classPathResource = new ClassPathResource("/templates/test.xls");
+            // 加载文件
+            wb.loadFromFile(classPathResource.getFile().getAbsolutePath());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Worksheet worksheet = wb.getWorksheets().get(0);
+        int row = worksheet.getRows().length;
+        int columns = worksheet.getColumns().length;
+        for (int i = 1; i < row; i++) {
+            for (int j = 1; j < columns; j++) {
+                String value = worksheet.get(i, j).getValue();
+                for (Map.Entry<String, String> it : map.entrySet()) {
+                    value = value.replaceAll(it.getKey(), it.getValue());
+                }
+                worksheet.setCellValue(i, j, value);
+            }
+        }
+        // 从多少行开始插入表格
+        worksheet.insertRow(22, 1, InsertOptionsType.FormatAsBefore);
+        for (int i = 22; i < 23; i++) {
+            for (int j = 1; j < 7; j++) {
+                worksheet.setCellValue(i, j, "test");
+            }
+        }
+        worksheet.getCellRange(22, 1).getStyle().getFont().isBold(false);
+        try {
+            wb.saveToFile("tests.pdf", FileFormat.PDF);
+        } catch (Exception ignore) {
+        } finally {
+            delFile("tests.pdf");
+        }
+    }
+
+    public static void delFile(String filePathAndName) {
+        try {
+            File myDelFile = new File(filePathAndName);
+            boolean delete = myDelFile.delete();
+            if (!delete) {
+                System.out.println("删除文件错误");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
