@@ -13,7 +13,7 @@ import java.util.stream.LongStream;
  */
 public class FolkJoinTest {
 
-    public static void main(String[] args) throws ExecutionException, InterruptedException {
+    public static void main(String[] args) {
 //        test1();
 //        test2();
         test3();

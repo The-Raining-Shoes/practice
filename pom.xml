@@ -357,7 +357,7 @@
         <repository>
             <id>rainy_group</id>
             <name>rainy_group</name>
-            <url>http://139.155.181.217:8081/repository/rainy_group</url>
+            <url>http://139.155.181.217:8081/repository/rainy_hosted</url>
         </repository>
     </repositories>
 
