@@ -1,5 +1,12 @@
 package com.example.item.method;
 
+/**
+ * 数字转化为中文(一万以内)
+ * 例：15 -> 十五  10000 -> 一万
+ *
+ * @author Rainy 2023-01-01 11:09:18
+ * @version 1.0.0
+ */
 public class NumberToWord {
 
     private static final char[] CN_ARR = new char[]{'一', '二', '三', '四', '五', '六', '七', '八', '九'};

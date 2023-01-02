@@ -1,4 +1,4 @@
-package com.example.item;
+package com.example.item.method;
 
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
@@ -11,7 +11,7 @@ import java.util.concurrent.*;
  * @author 郑光钦
  * @version 1.0.0
  */
-public class Test4 {
+public class ZhengMethod {
     static String str = "abcdefghijklmnopqrstuvwxyz0123456789";
     static ArrayList<String> strList = new ArrayList<>();
     static int[] count;

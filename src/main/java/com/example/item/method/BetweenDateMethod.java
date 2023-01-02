@@ -1,6 +1,5 @@
 package com.example.item.method;
 
-
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -11,7 +10,7 @@ import java.util.List;
 public class BetweenDateMethod {
 
     /**
-     * 获取两个日期字符串之间的日期集合
+     * 获取两个日期字符串之间的日期集合格式yyyyMMdd
      *
      * @param startTime:yyyyMMdd
      * @param endTime:yyyyMMdd
@@ -45,7 +44,7 @@ public class BetweenDateMethod {
     }
 
     /**
-     * 获取两个日期之间所有的月份集合
+     * 获取两个日期之间所有的月份集合格式yyyyMM
      *
      * @param startTime:yyyyMM
      * @param endTime:yyyyMM

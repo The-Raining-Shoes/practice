@@ -10,12 +10,13 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * TODO
+ * 文件分治关系
+ * 多文件分离再做对比（快速）
  *
- * @author tuzy
+ * @author rainy
  */
 public class FileTests {
-    static String base = "D:\\工作文档\\中冉\\2021考试";
+    static String base = "D:\\工作文档\\测试\\测试文件";
 
     public static void main(String[] args) throws IOException {
         long start = System.currentTimeMillis();

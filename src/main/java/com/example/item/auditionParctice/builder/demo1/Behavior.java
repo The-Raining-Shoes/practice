@@ -1,5 +1,8 @@
 package com.example.item.auditionParctice.builder.demo1;
 
+/**
+ * 建造者模式
+ */
 public abstract class Behavior {
 
     public abstract void buildA();

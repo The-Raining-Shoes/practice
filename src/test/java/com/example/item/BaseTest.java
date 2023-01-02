@@ -1,5 +1,7 @@
 package com.example.item;
 
+import com.example.item.auditionParctice.strategyAndFactory.StrategyFactory;
+import com.example.item.auditionParctice.strategyAndFactory.StrategyInterface;
 import com.github.benmanes.caffeine.cache.Cache;
 import com.github.benmanes.caffeine.cache.Caffeine;
 import org.junit.jupiter.api.Test;
@@ -40,6 +42,14 @@ public class BaseTest {
         String name = "123";
         System.out.println(getInitCache(name));
         System.out.println(getInitCache(name));
+    }
+
+    @Test
+    public void testAudition() {
+        String name = "StrategyImplMao";
+        final StrategyInterface strategy = StrategyFactory.getStrategy(name);
+        strategy.AAA("测试");
+        System.out.println(StrategyFactory.strategyFactory);
     }
 
     private String getInitCache(String code) {

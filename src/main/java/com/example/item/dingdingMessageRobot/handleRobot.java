@@ -1,4 +1,4 @@
-package com.example.item.messageRobot;
+package com.example.item.dingdingMessageRobot;
 
 import com.alibaba.fastjson.JSON;
 import lombok.Data;
