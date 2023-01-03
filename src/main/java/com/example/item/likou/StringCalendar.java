@@ -9,7 +9,6 @@ import java.util.UUID;
  * @version 1.0.0
  */
 public class StringCalendar {
-    
 
     public static void main(String[] args) {
         System.out.println(UUID.randomUUID().toString().replace("-", ""));
