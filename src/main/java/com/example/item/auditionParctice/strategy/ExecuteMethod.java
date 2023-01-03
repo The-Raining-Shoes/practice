@@ -8,7 +8,7 @@ import java.math.BigDecimal;
  * @author Rainy 2022-12-29 16:10:36
  * @version 1.0.0
  */
-public class MainClass {
+public class ExecuteMethod {
 
     public static void main(String[] args) {
         ExecuteClass<BigDecimal> strategyInterface = new ExecuteClass<>(new StrategyOne());

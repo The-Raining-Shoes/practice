@@ -2,6 +2,7 @@ package com.example.item.auditionParctice.facade;
 
 /**
  * <b>(ExecuteMethod)</b>
+ * 外观模式
  *
  * @author Rainy 2023-01-02 21:28:44
  * @version 1.0.0
