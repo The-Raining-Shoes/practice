@@ -2,6 +2,7 @@ package com.example.item.auditionParctice.flyWeight;
 
 /**
  * <b>(ExecuteMethod)</b>
+ * 享元模式
  *
  * @author Rainy 2023-01-05 13:18:13
  * @version 1.0.0

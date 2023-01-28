@@ -1,11 +1,6 @@
 package com.example.item.method.DeleteSpace;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 
 /**
  * 遍历一个指定文件夹，把里面所有文件内容空行(也可以自定义，修改部分逻辑)去掉功能
@@ -21,7 +16,7 @@ public class DeleteSpaceLine {
 //        String scanfPath = "D:/weixin-work-new/open-api/src/main/java";
 //        String scanfPath = "D:/weixin-work-new/manager-webapp/src/pages";
 //        String scanfPath = "D:/weixin-work-new-noMove/weixin-receive-web/src/main/java";
-        String scanfPath = "D:/weixin-work-new/manager-job/src/main/java";
+        String scanfPath = "D:/JavaSpace/wx-hei-work/webapp/src/pages/TaskCenter";
         scanfFile(scanfPath);
     }
 
@@ -94,7 +89,7 @@ public class DeleteSpaceLine {
 //    }
 
     static void scanfFile(String scanfPath) {
-        String filePath1 = "D:/20220125.txt";
+        String filePath1 = "D:/20230109.txt";
         // 递归循环取所有文件
         File file = new File(scanfPath);
         if (file.exists()) {
