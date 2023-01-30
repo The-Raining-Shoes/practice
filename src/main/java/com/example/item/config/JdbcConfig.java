@@ -34,7 +34,7 @@ public class JdbcConfig {
        return jdbcTemplate;
    }
 
-   @Bean
+    @Bean
    @ConfigurationProperties(prefix = "spring.datasource.other")
    public DataSource getMyDataSource() {
 //       1.使用连接池 例:druid数据库连接池使用

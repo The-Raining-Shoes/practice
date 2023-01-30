@@ -1,5 +1,6 @@
 package com.example.item.controller;
 
+import com.example.item.SomeStuff;
 import com.example.item.service.TestService;
 import lombok.NonNull;
 import lombok.Setter;
@@ -20,6 +21,8 @@ public class CacheTestController {
 
     @Setter(onMethod_ = @Autowired)
     private TestService testService;
+    @Setter(onMethod_ = @Autowired)
+    private SomeStuff someStuff;
 
     @GetMapping(value = "/test")
     public String testCache(@NonNull String testCode) {

@@ -2,6 +2,7 @@ package com.example.item.auditionParctice.chainFactory;
 
 /**
  * <b>(Execute)</b>
+ * 处理链
  *
  * @author Rainy 2023-01-03 21:35:11
  * @version 1.0.0
@@ -16,7 +17,7 @@ public class ExecuteMethod {
         ChainFactory.registerChainHandler(chainHandler2);
         ChainFactory.registerChainHandler(chainHandler3);
         ChainFactory.sort();
-        ChainFactory.route("test3");
+        ChainFactory.route("test");
     }
 
 }
