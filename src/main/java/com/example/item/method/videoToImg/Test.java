@@ -12,6 +12,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * 视频抓帧数
+ */
 public class Test {
 
     public static void main(String[] args) throws FrameGrabber.Exception {

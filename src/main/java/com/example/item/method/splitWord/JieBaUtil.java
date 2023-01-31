@@ -7,6 +7,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * 结巴分词器
+ */
 public class JieBaUtil {
 
     public static void main(String[] args) {

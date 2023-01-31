@@ -18,7 +18,7 @@ public class BetweenDateMethod {
      */
     public static List<Integer> getDateBetweenList(String startTime, String endTime) {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
-        // 声明保存日期集合
+        // 声明保存日期时间
         List<Integer> list = new ArrayList<>();
         try {
             // 转化成日期类型

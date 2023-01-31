@@ -1,7 +1,8 @@
 package com.example.item.method.classInsideMethod;
 
 /**
- * <b>(ExecuteMethid)</b>
+ * <b>(ExecuteMethod)</b>
+ * 互相依赖内部类
  *
  * @author Rainy 2023-01-01 11:14:18
  * @version 1.0.0
