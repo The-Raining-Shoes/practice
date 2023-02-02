@@ -231,7 +231,7 @@ public class FtpUtil {
         StringBuilder fileName = new StringBuilder();
         if (CheckUtil.isNotBlank(table)) {
             fileName.append("n00")
-                    .append("_qywx")
+                    .append("_test")
                     .append("_id")
                     .append("_").append(table)
                     .append("_").append(getYesterdayStr())

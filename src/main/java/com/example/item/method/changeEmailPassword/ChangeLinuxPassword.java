@@ -20,10 +20,9 @@ public class ChangeLinuxPassword {
     private String SystemMessage = "";
     //    public static String oldPassword = "GHdsdui8963%^$";
     public static String oldPassword = "Mm199678,.";
-    public static String tempPassword = "QYWX,.13579";
+    public static String tempPassword = "test,.13579";
 
     public static void main(String[] args) {
-//        ChangeLinuxPassword cep = new ChangeLinuxPassword("136.6.5.45", 22, "cxyftoods2", oldPassword);
         ChangeLinuxPassword cep = new ChangeLinuxPassword("139.155.181.217", 22, "root", oldPassword);
         if (cep.isHasError()) {
             System.out.println(cep.getErrorMessage());

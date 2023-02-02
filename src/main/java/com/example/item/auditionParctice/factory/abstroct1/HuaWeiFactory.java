@@ -1,5 +1,8 @@
 package com.example.item.auditionParctice.factory.abstroct1;
 
+/**
+ * 工厂模式
+ */
 public class HuaWeiFactory implements IProductFactory{
 
     @Override

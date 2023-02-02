@@ -2,20 +2,21 @@ package com.example.item;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.cache.annotation.EnableCaching;
+import org.springframework.cloud.openfeign.EnableFeignClients;
 
-@SpringBootApplication()
-//@SpringBootApplication(exclude = {DataSourceAutoConfiguration.class})
+/**
+ * @author Rainy
+ */
+@SpringBootApplication(exclude = {DataSourceAutoConfiguration.class})
+@EnableFeignClients(basePackages = {"com.example.item"})
 @EnableCaching
-//@MapperScan(basePackages = {"com.example.item.domain.mapper"}) // 扫描我们自定义文件目录下的文件
-//可以用自建的JPA源码
-//@EnableJpaRepositories(repositoryFactoryBeanClass = BaseRepositoryFactoryBean.class)
 public class ItemApplication {
 
     public static void main(String[] args) {
         SpringApplication arr = new SpringApplication(ItemApplication.class);
         arr.setAdditionalProfiles("application");
         arr.run(args);
-//		SpringApplication.run(ItemApplication.class, args);
     }
 }

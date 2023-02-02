@@ -28,7 +28,7 @@ public class Test {
                         "      </web:getRatableResource>\n" +
                         "   </soapenv:Body>\n" +
                         "</soapenv:Envelope>";
-        String url = "http://136.5.8.30:7788/services/RatableResource?wsdl";
+        String url = "";
         try {
             System.out.println(getWebServiceData(url, params));
         } catch (IOException e) {
@@ -38,7 +38,7 @@ public class Test {
 
     public static String getWebServiceData(String url, String params) throws IOException {
         //接受返回报文
-        String result = "";
+        String result;
         URL u = new URL(url);
         HttpURLConnection conn = (HttpURLConnection) u.openConnection();
         conn.setDoInput(true);

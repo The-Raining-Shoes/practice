@@ -3,21 +3,26 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-
-    <groupId>com.example</groupId>
-    <artifactId>item</artifactId>
-    <version>1.0.1-SNAPSHOT</version>
-    <packaging>jar</packaging>
-
-    <name>item</name>
-    <description>Demo project for Spring Boot</description>
-
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>2.2.6.RELEASE</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
+
+    <groupId>com.example</groupId>
+    <artifactId>item</artifactId>
+    <version>1.0.2-SNAPSHOT</version>
+    <packaging>pom</packaging>
+
+    <name>item</name>
+    <description>Demo project for Spring Boot</description>
+
+    <modules>
+        <module>
+            demo-service
+        </module>
+    </modules>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -28,26 +33,22 @@
 
 
     <dependencies>
-
         <dependency>
             <groupId>redis.clients</groupId>
             <artifactId>jedis</artifactId>
             <version>3.2.0</version>
         </dependency>
-
-        <!-- 队列 -->
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-amqp</artifactId>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-openfeign</artifactId>
+            <version>2.2.5.RELEASE</version>
         </dependency>
-
         <!-- pdf转word -->
         <dependency>
             <groupId>org.apache.pdfbox</groupId>
             <artifactId>pdfbox</artifactId>
             <version>2.0.12</version>
         </dependency>
-
         <!-- https://mvnrepository.com/artifact/ch.ethz.ganymed/ganymed-ssh2 -->
         <dependency>
             <groupId>ch.ethz.ganymed</groupId>
@@ -74,32 +75,13 @@
             <version>${elastic.job.lite.version}</version>
         </dependency>
 
-<!--        <dependency>-->
-<!--            <groupId>org.springframework.boot</groupId>-->
-<!--            <artifactId>spring-boot-starter-security</artifactId>-->
-<!--        </dependency>-->
-
-<!--        限流器-->
-<!--        <dependency>-->
-<!--            <groupId>com.google.guava</groupId>-->
-<!--            <artifactId>guava</artifactId>-->
-<!--            <version>30.1.1-jre</version>-->
-<!--        </dependency>-->
-
         <!--        分词器-->
-<!--        # 当前稳定版本-->
+        <!--        # 当前稳定版本-->
         <dependency>
             <groupId>com.huaban</groupId>
             <artifactId>jieba-analysis</artifactId>
             <version>1.0.2</version>
         </dependency>
-        <!--        分词器-->
-<!--        # 当前快照版本-->
-<!--        <dependency>-->
-<!--            <groupId>com.huaban</groupId>-->
-<!--            <artifactId>jieba-analysis</artifactId>-->
-<!--            <version>1.0.3a</version>-->
-<!--        </dependency>-->
 
         <!--        视频抽帧-->
         <dependency>
@@ -114,12 +96,6 @@
             <artifactId>persistence-api</artifactId>
             <version>1.0</version>
         </dependency>
-
-        <!--        kafka依赖-->
-        <!--        <dependency>-->
-        <!--            <groupId>org.springframework.kafka</groupId>-->
-        <!--            <artifactId>spring-kafka</artifactId>-->
-        <!--        </dependency>-->
 
         <dependency>
             <groupId>org.dom4j</groupId>
@@ -199,11 +175,11 @@
             <artifactId>spring-boot-starter-jdbc</artifactId>
         </dependency>
         <!-- mybatis-plus  是自己开发的，并非官方的-->
-        <dependency>
-            <groupId>com.baomidou</groupId>
-            <artifactId>mybatis-plus-boot-starter</artifactId>
-            <version>3.0.5</version>
-        </dependency>
+        <!--        <dependency>-->
+        <!--            <groupId>com.baomidou</groupId>-->
+        <!--            <artifactId>mybatis-plus-boot-starter</artifactId>-->
+        <!--            <version>3.0.5</version>-->
+        <!--        </dependency>-->
 
         <dependency>
             <groupId>mysql</groupId>
@@ -222,6 +198,7 @@
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
+            <version>1.18.20</version>
         </dependency>
 
         <dependency>
@@ -288,11 +265,6 @@
             <artifactId>gson</artifactId>
             <version>2.8.6</version>
         </dependency>
-        <!-- 日志配置 -->
-        <!--        <dependency>-->
-        <!--            <groupId>ch.qos.logback</groupId>-->
-        <!--            <artifactId>logback-classic</artifactId>-->
-        <!--        </dependency>-->
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>jcl-over-slf4j</artifactId>
@@ -343,10 +315,11 @@
             <version>5.4.3</version>
         </dependency>
 
-<!--        <dependency>-->
-<!--            <groupId>org.springframework.boot</groupId>-->
-<!--            <artifactId>spring-boot-starter-data-jpa</artifactId>-->
-<!--        </dependency>-->
+        <dependency>
+            <groupId>com.itextpdf</groupId>
+            <artifactId>itextpdf</artifactId>
+            <version>5.5.11</version>
+        </dependency>
 
     </dependencies>
     <build>
@@ -354,22 +327,38 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <!--                <configuration>-->
+                <!--                    <skip>true</skip>-->
+                <!--                </configuration>-->
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <configuration>
-                    <source>9</source>
-                    <target>9</target>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
+                    <encoding>${project.build.sourceEncoding}</encoding>
                 </configuration>
             </plugin>
         </plugins>
     </build>
+    <distributionManagement>
+        <repository>
+            <id>rainy_hosted</id>
+            <name>rainy_hosted</name>
+            <url>http://139.155.181.217:8081/repository/rainy_hosted/</url>
+        </repository>
+    </distributionManagement>
     <repositories>
         <repository>
             <id>aliyun</id>
             <name>aliyun</name>
             <url>http://maven.aliyun.com/nexus/content/groups/public</url>
+        </repository>
+        <repository>
+            <id>rainy_group</id>
+            <name>rainy_group</name>
+            <url>http://139.155.181.217:8081/repository/rainy_hosted</url>
         </repository>
     </repositories>
 

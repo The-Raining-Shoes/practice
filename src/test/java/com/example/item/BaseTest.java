@@ -1,25 +1,16 @@
 package com.example.item;
 
-import com.example.item.queue.Sender;
+import com.example.item.auditionParctice.strategyAndFactory.StrategyFactory;
+import com.example.item.auditionParctice.strategyAndFactory.StrategyInterface;
 import com.github.benmanes.caffeine.cache.Cache;
 import com.github.benmanes.caffeine.cache.Caffeine;
-import lombok.Setter;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.concurrent.TimeUnit;
 
 @SpringBootTest
 public class BaseTest {
-
-    @Setter(onMethod_ = @Autowired)
-    private Sender sender;
-
-    @Test
-    public void test() {
-        sender.sendTemplate();
-    }
 
     private final Cache<String, String> autoCache = Caffeine.newBuilder()
             // 设置最后一次写入或访问后经过固定时间过期
@@ -51,6 +42,14 @@ public class BaseTest {
         String name = "123";
         System.out.println(getInitCache(name));
         System.out.println(getInitCache(name));
+    }
+
+    @Test
+    public void testAudition() {
+        String name = "StrategyImplMao";
+        final StrategyInterface strategy = StrategyFactory.getStrategy(name);
+        strategy.AAA("测试");
+        System.out.println(StrategyFactory.strategyFactory);
     }
 
     private String getInitCache(String code) {
