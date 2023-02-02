@@ -2,6 +2,9 @@ package com.example.item.thread.cas;
 
 import java.util.concurrent.atomic.AtomicStampedReference;
 
+/**
+ * 带版本号的原子变量
+ */
 public class ReferenceTest {
 
     public static void main(String[] args) {
