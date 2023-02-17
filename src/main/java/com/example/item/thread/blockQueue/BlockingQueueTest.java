@@ -3,6 +3,9 @@ package com.example.item.thread.blockQueue;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.TimeUnit;
 
+/**
+ * 阻塞队列测试
+ */
 public class BlockingQueueTest {
 
     public static void main(String[] args) throws InterruptedException {
