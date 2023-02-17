@@ -1,7 +1,5 @@
 package com.example.item;
 
-import java.util.concurrent.ExecutionException;
-
 /**
  * <b>(SomeStuff)</b>
  *
@@ -10,8 +8,8 @@ import java.util.concurrent.ExecutionException;
  */
 public class SomeStuff {
 
-    public static void main(String[] args) throws ExecutionException, InterruptedException {
-        System.out.println(1);
+    public static void main(String[] args) throws ClassNotFoundException {
+
     }
 
 }
