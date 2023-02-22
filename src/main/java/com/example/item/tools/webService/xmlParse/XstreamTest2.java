@@ -17,72 +17,7 @@ import java.util.List;
 public class XstreamTest2 {
 
     public static void main(String[] args) {
-        String xml = "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n" +
-                     "<SAMResponse>\n" +
-                     "  <Service-Information>\n" +
-                     "    <Service-Result-Code>0</Service-Result-Code>\n" +
-                     "    <Product_OFF_info>\n" +
-                     "      <Product-Offer-Id>830000000020008583</Product-Offer-Id>\n" +
-                     "      <ProdOfferInstanceId>310162685510</ProdOfferInstanceId>\n" +
-                     "      <Product_OFF_Name>5G畅享融合129元套餐关联包</Product_OFF_Name>\n" +
-                     "      <Offer-Type>22</Offer-Type>\n" +
-                     "      <Respond-Ratable-Query>\n" +
-                     "        <Owner-Type>2</Owner-Type>\n" +
-                     "        <Owner-ID>310162685510</Owner-ID>\n" +
-                     "        <Ratable-Resource-ID>131100</Ratable-Resource-ID>\n" +
-                     "        <Ratable-Resource-name>国内语音时长</Ratable-Resource-name>\n" +
-                     "        <BeginTime>20210301000000</BeginTime>\n" +
-                     "        <EndTime>20210331235959</EndTime>\n" +
-                     "        <Ratable_Amount>200</Ratable_Amount>\n" +
-                     "        <Balance-Amount>0</Balance-Amount>\n" +
-                     "        <Usage-Amount>200</Usage-Amount>\n" +
-                     "        <UnitType_Id>1</UnitType_Id>\n" +
-                     "      </Respond-Ratable-Query>\n" +
-                     "    </Product_OFF_info>\n" +
-                     "    <Product_OFF_info>\n" +
-                     "      <Product-Offer-Id>830000000020001672</Product-Offer-Id>\n" +
-                     "      <ProdOfferInstanceId>310162685505</ProdOfferInstanceId>\n" +
-                     "      <Product_OFF_Name>201910-5G畅享129元套餐201910</Product_OFF_Name>\n" +
-                     "      <Offer-Type>21</Offer-Type>\n" +
-                     "      <Respond-Ratable-Query>\n" +
-                     "        <Owner-Type>2</Owner-Type>\n" +
-                     "        <Owner-ID>310162685505</Owner-ID>\n" +
-                     "        <Ratable-Resource-ID>131100</Ratable-Resource-ID>\n" +
-                     "        <Ratable-Resource-name>国内语音时长</Ratable-Resource-name>\n" +
-                     "        <BeginTime>20210301000000</BeginTime>\n" +
-                     "        <EndTime>20210331235959</EndTime>\n" +
-                     "        <Ratable_Amount>500</Ratable_Amount>\n" +
-                     "        <Balance-Amount>0</Balance-Amount>\n" +
-                     "        <Usage-Amount>500</Usage-Amount>\n" +
-                     "        <UnitType_Id>1</UnitType_Id>\n" +
-                     "      </Respond-Ratable-Query>\n" +
-                     "      <Respond-Ratable-Query>\n" +
-                     "        <Owner-Type>2</Owner-Type>\n" +
-                     "        <Owner-ID>310162685505</Owner-ID>\n" +
-                     "        <Ratable-Resource-ID>332100</Ratable-Resource-ID>\n" +
-                     "        <Ratable-Resource-name>国内流量(结转入)</Ratable-Resource-name>\n" +
-                     "        <BeginTime>20210301000000</BeginTime>\n" +
-                     "        <EndTime>20210331235959</EndTime>\n" +
-                     "        <Ratable_Amount>31457280</Ratable_Amount>\n" +
-                     "        <Balance-Amount>24714159</Balance-Amount>\n" +
-                     "        <Usage-Amount>6743121</Usage-Amount>\n" +
-                     "        <UnitType_Id>3</UnitType_Id>\n" +
-                     "      </Respond-Ratable-Query>\n" +
-                     "      <Respond-Ratable-Query>\n" +
-                     "        <Owner-Type>2</Owner-Type>\n" +
-                     "        <Owner-ID>310162685505</Owner-ID>\n" +
-                     "        <Ratable-Resource-ID>331100</Ratable-Resource-ID>\n" +
-                     "        <Ratable-Resource-name>国内流量</Ratable-Resource-name>\n" +
-                     "        <BeginTime>20210301000000</BeginTime>\n" +
-                     "        <EndTime>20210331235959</EndTime>\n" +
-                     "        <Ratable_Amount>31457280</Ratable_Amount>\n" +
-                     "        <Balance-Amount>31457280</Balance-Amount>\n" +
-                     "        <Usage-Amount>0</Usage-Amount>\n" +
-                     "        <UnitType_Id>3</UnitType_Id>\n" +
-                     "      </Respond-Ratable-Query>\n" +
-                     "    </Product_OFF_info>\n" +
-                     "  </Service-Information>\n" +
-                     "</SAMResponse>\n";
+        String xml = "";
         XStream xStream = new XStream(new DomDriver());
         xStream.processAnnotations(DataList.class);
         DataList dataList = (DataList) xStream.fromXML(xml);

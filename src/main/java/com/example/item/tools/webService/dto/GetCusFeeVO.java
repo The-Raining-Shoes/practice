@@ -4,7 +4,7 @@ import com.thoughtworks.xstream.annotations.XStreamAlias;
 import lombok.Data;
 
 /**
- * 智能账单BSN接口
+ * 账单接口
  *
  * @author MaoHao
  * @date 2021年04月02日 9:55

@@ -6,15 +6,20 @@ import org.springframework.context.annotation.Configuration;
 /**
  * <b>(Config)</b>
  *
- * @author Rainy 2023-02-17 16:09:01
+ * @author Rainy 2023-02-21 17:49:02
  * @version 1.0.0
  */
 @Configuration
 public class Config {
 
     @Bean("TestInterface")
-    BaseInvocation<TestInterface> baseInvocation() {
-        return new BaseInvocation<>(TestInterface.class);
+    public BaseInvocationHandler testInterface() {
+        return getService("com.example.item.invocationConfig.TestInterface");
+    }
+
+
+    private BaseInvocationHandler getService(String className) {
+        return new BaseInvocationHandler(className);
     }
 
 }

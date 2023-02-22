@@ -7,7 +7,7 @@ import lombok.Data;
 import java.util.List;
 
 /**
- * 集团欠费接口返回实体
+ * 接口返回实体
  *
  * @author MaoHao
  * @date 2021年04月02日 9:12

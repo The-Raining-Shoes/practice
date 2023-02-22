@@ -8,7 +8,7 @@ package com.example.item;
  */
 public class SomeStuff {
 
-    public static void main(String[] args) throws ClassNotFoundException {
+    public static void main(String[] args) {
 
     }
 
