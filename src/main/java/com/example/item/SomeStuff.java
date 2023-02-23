@@ -9,7 +9,7 @@ package com.example.item;
 public class SomeStuff {
 
     public static void main(String[] args) {
-
+        System.out.println(1);
     }
 
 }
