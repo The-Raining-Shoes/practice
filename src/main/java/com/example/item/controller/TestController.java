@@ -10,13 +10,17 @@ import lombok.Setter;
 import org.apache.poi.util.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.*;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.OutputStream;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
@@ -29,14 +33,16 @@ public class TestController {
     @Setter(onMethod_ = @Autowired)
     private RedisTemplate<Object, Object> redisTemplate;
 
+    @PostMapping(value = "/test")
+    public void test(@RequestBody @Validated TestDTO code) {
+        System.out.println(11);
+    }
+
     @GetMapping(value = "/test3")
     public String test3(HttpServletResponse response) {
         File zip = null;
         try {
-            zip = ZipUtil.zip(File.createTempFile("test-zip", ".zip"), false,
-                    FileUtil.file("d:/线上部2021年数据安全应急演练报告-网厅系统.doc"),
-                    FileUtil.file("d:/模板.xlsx")
-            );
+            zip = ZipUtil.zip(File.createTempFile("test-zip", ".zip"), false, FileUtil.file("d:/线上部2021年数.doc"), FileUtil.file("d:/模板.xlsx"));
         } catch (IOException e) {
             e.printStackTrace();
         }

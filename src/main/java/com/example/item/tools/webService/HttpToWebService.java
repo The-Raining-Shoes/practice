@@ -1,13 +1,6 @@
 package com.example.item.tools.webService;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.OutputStream;
-import java.io.OutputStreamWriter;
+import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
@@ -35,7 +28,7 @@ public class HttpToWebService {
         connection.setDoInput(true);
         connection.setDoOutput(true);
         //第四步：组织SOAP数据，发送请求
-        String soapXML = getXML("15226466316");
+        String soapXML = getXML("");
         OutputStream os = connection.getOutputStream();
         os.write(soapXML.getBytes());
         //第五步：接收服务端响应，打印（xml格式数据）
@@ -73,18 +66,7 @@ public class HttpToWebService {
 
     public static String getXML(String phoneNum) {
         System.out.println(phoneNum);
-        return "<soapenv:Envelope xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:web=\"http://webservice.bsn.ztesoft.com\">\n" +
-               "   <soapenv:Header/>\n" +
-               "   <soapenv:Body>\n" +
-               "      <web:getRatableResource soapenv:encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\">\n" +
-               "         <reqVO xsi:type=\"mod:RatableResourceRequDto\" xmlns:mod=\"http://model.balancemgr.bsn.ztesoft.com\">\n" +
-               "            <accNbr xsi:type=\"xsd:string\">17782263622</accNbr>\n" +
-               "            <prodId xsi:type=\"xsd:string\">208511296</prodId>\n" +
-               "            <queryMonth xsi:type=\"xsd:string\">202103</queryMonth>\n" +
-               "         </reqVO>\n" +
-               "      </web:getRatableResource>\n" +
-               "   </soapenv:Body>\n" +
-               "</soapenv:Envelope>";
+        return "";
     }
 
 }
